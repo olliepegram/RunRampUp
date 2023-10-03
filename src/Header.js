@@ -1,8 +1,18 @@
+import CallToActionButton from './CallToActionButton';
+
+const styles = {
+	display: 'flex',
+};
+
 function Header() {
 	return (
-		<header>
-			<h1>Run Ramp Up</h1>
-			<h2>Program and load builder</h2>
+		<header styles={styles}>
+			<div>
+				<h1>RunRampUp</h1>
+			</div>
+			<div>
+				<CallToActionButton>Create a Program</CallToActionButton>
+			</div>
 		</header>
 	);
 }

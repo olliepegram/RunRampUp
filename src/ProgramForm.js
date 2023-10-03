@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 function ProgramForm() {
-	const [measurement, setMeasurement] = useState('km');
 	const [currentLoad, setCurrentLoad] = useState(0);
+	const [maxHeartRate, setMaxHeartRate] = useState(0);
 
 	return (
 		<form>
