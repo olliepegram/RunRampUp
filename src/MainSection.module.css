@@ -1,0 +1,50 @@
+.container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin: 120px 0;
+}
+
+.left {
+	width: 50%;
+}
+
+.leftContainer {
+	display: flex;
+	margin: 80px 0;
+	width: 600px;
+}
+
+.leftContainer p {
+	font-size: 24px;
+	color: rgba(31, 36, 57, 0.7);
+	margin: -7px 0 0 50px;
+	letter-spacing: 0.5px;
+}
+
+.right {
+	margin: 30px -50px 0 0;
+}
+
+.container h2 {
+	font-size: 60px;
+	letter-spacing: 1px;
+	line-height: 120%;
+}
+
+.container .jogging {
+	width: 500px;
+}
+
+.arrow {
+	width: 100px;
+}
+
+.buttons {
+	display: flex;
+}
+
+button {
+	font-weight: 500;
+	font-size: 16px;
+}

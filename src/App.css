@@ -8,9 +8,5 @@ body {
 	font-family: 'Gabarito', cursive;
 	margin: 0 10%;
 	color: #1f2439;
-}
-
-h1 {
-	font-size: 48px;
-	font-weight: 600;
+	background-color: #fcfafa;
 }

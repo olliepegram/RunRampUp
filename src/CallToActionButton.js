@@ -1,12 +1,14 @@
-const styles = {
-	border: '3px solid #5165F5',
-	width: '200px',
-	height: '45px',
-	background: 'none',
-	borderRadius: '4px',
-};
+function CallToActionButton({ children, textColor, borderColor }) {
+	const styles = {
+		border: `2px solid #${borderColor}`,
+		width: '200px',
+		height: '45px',
+		background: 'none',
+		borderRadius: '4px',
+		cursor: 'pointer',
+		color: `#${textColor}`,
+	};
 
-function CallToActionButton({ children }) {
 	return <button style={styles}>{children}</button>;
 }
 

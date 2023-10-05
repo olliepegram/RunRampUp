@@ -1,0 +1,19 @@
+.container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin: 60px 0 0 0;
+}
+
+.container h1 {
+	font-size: 36px;
+	font-weight: 600;
+	margin: 0;
+	letter-spacing: 1px;
+}
+
+.container button {
+	color: #5165f5;
+	font-weight: 500;
+	font-size: 16px;
+}

@@ -1,17 +1,19 @@
 import CallToActionButton from './CallToActionButton';
-
-const styles = {
-	display: 'flex',
-};
+import styles from './Header.module.css';
 
 function Header() {
 	return (
-		<header styles={styles}>
+		<header className={styles.container}>
 			<div>
 				<h1>RunRampUp</h1>
 			</div>
 			<div>
-				<CallToActionButton>Create a Program</CallToActionButton>
+				<CallToActionButton
+					textColor={'5165f5'}
+					borderColor={'5165f5'}
+				>
+					Program Builder
+				</CallToActionButton>
 			</div>
 		</header>
 	);
