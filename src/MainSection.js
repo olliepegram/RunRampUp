@@ -2,6 +2,7 @@ import arrow from './arrow.png';
 import jogging from './jogging.png';
 import CallToActionButton from './CallToActionButton';
 import styles from './MainSection.module.css';
+
 // Illustration by <a href="https://icons8.com/illustrations/author/ARh4OKrFtdfC">Pixeltrue</a> from <a href="https://icons8.com/illustrations">Ouch!</a>
 function MainSection() {
 	return (
@@ -27,7 +28,7 @@ function MainSection() {
 							textColor={'5165f5'}
 							borderColor={'5165f5'}
 						>
-							Program Builder
+							Build Program
 						</CallToActionButton>
 					</div>
 					<div>
