@@ -17,6 +17,8 @@ function ProgramForm() {
 	const [goalLoad, setGoalLoad] = useState('');
 	const [daysPerWeek, setDaysPerWeek] = useState('');
 	const [days, setDays] = useState(daysArr);
+	const [longRunDay, setLongRunDay] = useState('');
+	let user = {};
 
 	const handleSelectDay = (e, id) => {
 		e.preventDefault();
@@ -29,8 +31,24 @@ function ProgramForm() {
 		console.log(days);
 	};
 
+	const handleOnSubmit = (e) => {
+		e.preventDefault();
+
+		const activeDays = days.filter((day) => day.active);
+
+		user = {
+			currentLoad,
+			maxHeartRate,
+			goalLoad,
+			activeDays,
+			daysPerWeek,
+			longRunDay,
+		};
+		console.log(user);
+	};
+
 	return (
-		<form>
+		<form onSubmit={handleOnSubmit}>
 			<label
 				className={styles.label}
 				htmlFor='load'
@@ -38,6 +56,7 @@ function ProgramForm() {
 				What’s the total distance you run in a week currently?
 			</label>
 			<input
+				required
 				type='number'
 				id='load'
 				value={currentLoad}
@@ -51,6 +70,7 @@ function ProgramForm() {
 				What is your max heart rate?
 			</label>
 			<input
+				required
 				type='number'
 				id='heartRate'
 				value={maxHeartRate}
@@ -63,6 +83,7 @@ function ProgramForm() {
 				What is your goal training load?
 			</label>
 			<input
+				required
 				id='goal-load'
 				type='number'
 				value={goalLoad}
@@ -76,22 +97,15 @@ function ProgramForm() {
 			</label>
 			<div style={{ marginBottom: '54px' }}>
 				<select
+					required
 					id='days-per-week'
 					onChange={(e) => setDaysPerWeek(Number(e.target.value))}
 					className={styles.options}
-					placeholder='Select days'
 				>
-					<option
-						value=''
-						disabled
-						selected
-					>
-						Select Days
-					</option>
 					{Array.from({ length: 7 }, (_, i) => (
 						<option
 							key={i}
-							value={i}
+							value={i + 1}
 						>
 							{i + 1}
 						</option>
@@ -112,6 +126,7 @@ function ProgramForm() {
 						value={day}
 						onClick={(e) => handleSelectDay(e, id)}
 						key={day}
+						required
 					>
 						{day}
 					</button>
@@ -123,14 +138,12 @@ function ProgramForm() {
 			>
 				Which day of the week will be your long run?
 			</label>
-			<select className={styles.options}>
-				<option
-					value=''
-					disabled
-					selected
-				>
-					Select Day
-				</option>
+			<select
+				required
+				className={styles.options}
+				value={longRunDay}
+				onChange={(e) => setLongRunDay(e.target.value)}
+			>
 				{daysArr.map(({ day }) => (
 					<option
 						key={day}
@@ -140,6 +153,12 @@ function ProgramForm() {
 					</option>
 				))}
 			</select>
+			<button
+				className={styles.submit}
+				type='submit'
+			>
+				Create Program
+			</button>
 		</form>
 	);
 }
