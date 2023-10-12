@@ -3,13 +3,13 @@ import Program from './Program';
 import styles from './ProgramForm.module.css';
 
 const daysArr = [
-	{ day: 'Monday', active: false, id: 0 },
-	{ day: 'Tuesday', active: false, id: 1 },
-	{ day: 'Wednesday', active: false, id: 2 },
-	{ day: 'Thursday', active: false, id: 3 },
-	{ day: 'Friday', active: false, id: 4 },
-	{ day: 'Saturday', active: false, id: 5 },
-	{ day: 'Sunday', active: false, id: 6 },
+	{ day: 'Monday', active: false, id: 1 },
+	{ day: 'Tuesday', active: false, id: 2 },
+	{ day: 'Wednesday', active: false, id: 3 },
+	{ day: 'Thursday', active: false, id: 4 },
+	{ day: 'Friday', active: false, id: 5 },
+	{ day: 'Saturday', active: false, id: 6 },
+	{ day: 'Sunday', active: false, id: 7 },
 ];
 
 function ProgramForm() {
