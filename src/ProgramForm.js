@@ -36,14 +36,14 @@ function ProgramForm() {
 	const handleOnSubmit = (e) => {
 		e.preventDefault();
 
-		const activeDays = days.filter((day) => day.active);
+		// const activeDays = days.filter((day) => day.active);
 
 		setUser({
 			currentLoad,
 			maxHeartRate,
 			minHeartRate,
 			goalLoad,
-			activeDays,
+			days,
 			daysPerWeek,
 			longRunDay,
 		});
@@ -165,12 +165,12 @@ function ProgramForm() {
 					required
 					className={styles.options}
 					value={longRunDay}
-					onChange={(e) => setLongRunDay(e.target.value)}
+					onChange={(e) => setLongRunDay(Number(e.target.value))}
 				>
-					{daysArr.map(({ day }) => (
+					{daysArr.map(({ day }, i) => (
 						<option
 							key={day}
-							value={day}
+							value={i + 1}
 						>
 							{day}
 						</option>

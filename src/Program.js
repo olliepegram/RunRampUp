@@ -40,33 +40,32 @@ const generateRunningProgram = (
 	const rest = 0;
 	const easyRuns = currentWeeklyDistance - weeklySpeed - longRunDay;
 	const daysPerWeek = 7;
-	const activeDayId = Array.from({ length: 7 }, (num, i) => {
-		return console.log(num[i]);
-	});
-	// const activeDayId = runningDays.map((day) => {
-	// 	return day.id > 0 ? day.id : 0;
-	// });
 
-	console.log(activeDayId);
+	const activeDayId = runningDays.map((day) => {
+		if (day.active) {
+			return day.id;
+		} else {
+			return 0;
+		}
+	});
 
 	let currentWeek = 1;
 	const schedule = [];
 
 	while (currentWeeklyDistance < desiredRunningDistance) {
-		for (let i = 0 + 1; i <= daysPerWeek; i++) {
-			if (activeDayId[i] !== undefined) {
-				if (i === longRunPickedDay) {
-					schedule.push({
-						week: currentWeek,
-						day: i,
-						runType: catagory['long'],
-						distance: longRunDay,
-					});
-				}
+		for (let i = 0; i < daysPerWeek; i++) {
+			console.log(activeDayId[i]);
+			if (activeDayId[i] === longRunPickedDay) {
+				schedule.push({
+					week: currentWeek,
+					day: i + 1,
+					runType: catagory['long'],
+					distance: longRunDay,
+				});
 			} else {
 				schedule.push({
 					week: currentWeek,
-					day: i,
+					day: i + 1,
 					runType: catagory['rest'],
 					distance: rest,
 				});
@@ -81,7 +80,7 @@ const generateRunningProgram = (
 };
 
 function Program({ user }) {
-	const { minHeartRate, maxHeartRate, activeDays } = user;
+	const { minHeartRate, maxHeartRate, days, longRunDay } = user;
 	const heartRateZones = calculateHeartRateZones(minHeartRate, maxHeartRate);
 	const catagories = {
 		easy: { heartRate: heartRateZones['Zone 2'], difficulty: 'easy' },
@@ -90,16 +89,16 @@ function Program({ user }) {
 		long: { heartRate: heartRateZones['long'], difficulty: 'hard' },
 		rest: { heartRate: heartRateZones['rest'], difficulty: 'easy' },
 	};
-
+	console.log(user);
 	// Example usage
 	const currentWeeklyDistance = 10; // Replace with the starting weekly distance in km
 	const desiredWeeklyDistance = 30; // Replace with the desired weekly distance in km
-	const longRunPickedDay = 7; // Replace with the number of running days per week
+	const longRunPickedDay = longRunDay; // Replace with the number of running days per week
 
 	const program = generateRunningProgram(
 		currentWeeklyDistance,
 		desiredWeeklyDistance,
-		activeDays,
+		days,
 		longRunPickedDay,
 		catagories
 	);
