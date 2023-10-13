@@ -34,13 +34,6 @@ const generateRunningProgram = (
 	longRunPickedDay = 7,
 	catagory
 ) => {
-	const weeklyDistanceIncreasePercentage = 0.1;
-	const weeklySpeed = 0.2 * currentWeeklyDistance;
-	const longRunDay = 0.4 * currentWeeklyDistance;
-	const rest = 0;
-	const easyRuns = currentWeeklyDistance - weeklySpeed - longRunDay;
-	const daysPerWeek = 7;
-
 	const activeDayId = runningDays.map((day) => {
 		if (day.active) {
 			return day.id;
@@ -48,26 +41,57 @@ const generateRunningProgram = (
 			return 0;
 		}
 	});
+	const activeDaysOnly = runningDays.filter((day) => day.active);
+	console.log(activeDaysOnly.length);
+	const weeklyDistanceIncreasePercentage = 0.1;
+	const weeklySpeed = 0.2 * currentWeeklyDistance;
+	const longRunDay = 0.4 * currentWeeklyDistance;
+	const rest = 0;
+	const easyRuns = (
+		(currentWeeklyDistance - weeklySpeed - longRunDay) /
+		(activeDaysOnly.length - 2)
+	).toFixed(2);
+	const daysPerWeek = 7;
 
 	let currentWeek = 1;
 	const schedule = [];
+	const speedDay = longRunPickedDay - 2;
 
 	while (currentWeeklyDistance < desiredRunningDistance) {
 		for (let i = 0; i < daysPerWeek; i++) {
-			console.log(activeDayId[i]);
-			if (activeDayId[i] === longRunPickedDay) {
-				schedule.push({
-					week: currentWeek,
-					day: i + 1,
-					runType: catagory['long'],
-					distance: longRunDay,
-				});
+			if (activeDayId[i]) {
+				if (activeDayId[i] === longRunPickedDay) {
+					schedule.push({
+						week: currentWeek,
+						day: i + 1,
+						runType: catagory['long'],
+						distance: longRunDay,
+						typeName: 'long',
+					});
+				} else if (activeDayId[i] === speedDay) {
+					schedule.push({
+						week: currentWeek,
+						day: i + 1,
+						runType: catagory['speed'],
+						distance: weeklySpeed,
+						typeName: 'speed',
+					});
+				} else {
+					schedule.push({
+						week: currentWeek,
+						day: i + 1,
+						runType: catagory['easy'],
+						distance: Number(easyRuns),
+						typeName: 'easy',
+					});
+				}
 			} else {
 				schedule.push({
 					week: currentWeek,
 					day: i + 1,
 					runType: catagory['rest'],
 					distance: rest,
+					typeName: `rest`,
 				});
 			}
 		}
@@ -80,7 +104,14 @@ const generateRunningProgram = (
 };
 
 function Program({ user }) {
-	const { minHeartRate, maxHeartRate, days, longRunDay } = user;
+	const {
+		currentLoad,
+		goalLoad,
+		minHeartRate,
+		maxHeartRate,
+		days,
+		longRunDay,
+	} = user;
 	const heartRateZones = calculateHeartRateZones(minHeartRate, maxHeartRate);
 	const catagories = {
 		easy: { heartRate: heartRateZones['Zone 2'], difficulty: 'easy' },
@@ -89,11 +120,10 @@ function Program({ user }) {
 		long: { heartRate: heartRateZones['long'], difficulty: 'hard' },
 		rest: { heartRate: heartRateZones['rest'], difficulty: 'easy' },
 	};
-	console.log(user);
-	// Example usage
-	const currentWeeklyDistance = 10; // Replace with the starting weekly distance in km
-	const desiredWeeklyDistance = 30; // Replace with the desired weekly distance in km
-	const longRunPickedDay = longRunDay; // Replace with the number of running days per week
+
+	const currentWeeklyDistance = currentLoad;
+	const desiredWeeklyDistance = goalLoad;
+	const longRunPickedDay = longRunDay;
 
 	const program = generateRunningProgram(
 		currentWeeklyDistance,
