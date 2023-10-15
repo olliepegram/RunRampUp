@@ -41,8 +41,9 @@ const generateRunningProgram = (
 			return 0;
 		}
 	});
+
 	const activeDaysOnly = runningDays.filter((day) => day.active);
-	console.log(activeDaysOnly.length);
+
 	const weeklyDistanceIncreasePercentage = 0.1;
 	const weeklySpeed = 0.2 * currentWeeklyDistance;
 	const longRunDay = 0.4 * currentWeeklyDistance;
@@ -56,6 +57,21 @@ const generateRunningProgram = (
 	let currentWeek = 1;
 	const schedule = [];
 	const speedDay = longRunPickedDay - 2;
+
+	const findClosestActiveDay = activeDayId.find((day, i) => {
+		let dayIsActive = day > 0;
+		let dayClosestToLongRun = 0;
+		if (
+			(dayIsActive && dayIsActive >= longRunPickedDay + 2) ||
+			dayIsActive <= longRunPickedDay - 2
+		) {
+			dayClosestToLongRun = day;
+		}
+
+		return dayClosestToLongRun;
+	});
+
+	console.log(findClosestActiveDay);
 
 	while (currentWeeklyDistance < desiredRunningDistance) {
 		for (let i = 0; i < daysPerWeek; i++) {
