@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react';
+import styles from './Program.module.css';
+
 const calculateHeartRateZones = (minHeartRate, maxHeartRate) => {
 	const zones = {
 		'Zone 1': [0.5, 0.6],
@@ -56,14 +59,12 @@ const generateRunningProgram = (
 
 	let currentWeek = 1;
 	const schedule = [];
-	const speedDay = longRunPickedDay - 2;
 
-	const findClosestActiveDay = activeDayId.find((day, i) => {
-		let dayIsActive = day > 0;
+	const findClosestActiveDay = activeDayId.map((day, i) => {
 		let dayClosestToLongRun = 0;
 		if (
-			(dayIsActive && dayIsActive >= longRunPickedDay + 2) ||
-			dayIsActive <= longRunPickedDay - 2
+			(day > 0 && day >= longRunPickedDay + 3) ||
+			(day > 0 && day <= longRunPickedDay - 3)
 		) {
 			dayClosestToLongRun = day;
 		}
@@ -84,7 +85,7 @@ const generateRunningProgram = (
 						distance: longRunDay,
 						typeName: 'long',
 					});
-				} else if (activeDayId[i] === speedDay) {
+				} else if (activeDayId[i] === 1) {
 					schedule.push({
 						week: currentWeek,
 						day: i + 1,
@@ -116,6 +117,7 @@ const generateRunningProgram = (
 			weeklyDistanceIncreasePercentage * currentWeeklyDistance;
 		currentWeek++;
 	}
+	console.log(schedule);
 	return schedule;
 };
 
@@ -128,6 +130,10 @@ function Program({ user }) {
 		days,
 		longRunDay,
 	} = user;
+	const currentWeeklyDistance = currentLoad;
+	const desiredWeeklyDistance = goalLoad;
+	const longRunPickedDay = longRunDay;
+
 	const heartRateZones = calculateHeartRateZones(minHeartRate, maxHeartRate);
 	const catagories = {
 		easy: { heartRate: heartRateZones['Zone 2'], difficulty: 'easy' },
@@ -136,11 +142,6 @@ function Program({ user }) {
 		long: { heartRate: heartRateZones['long'], difficulty: 'hard' },
 		rest: { heartRate: heartRateZones['rest'], difficulty: 'easy' },
 	};
-
-	const currentWeeklyDistance = currentLoad;
-	const desiredWeeklyDistance = goalLoad;
-	const longRunPickedDay = longRunDay;
-
 	const program = generateRunningProgram(
 		currentWeeklyDistance,
 		desiredWeeklyDistance,
@@ -148,12 +149,50 @@ function Program({ user }) {
 		longRunPickedDay,
 		catagories
 	);
+	const [runData, setRunData] = useState(program);
+	const [groupedRunData, setGroupedRunData] = useState({});
 
-	// Output the generated running program
-	console.log('Running Program:');
-	program.forEach((day) => console.log(day));
+	useEffect(() => {
+		const groupedData = runData.reduce((acc, item) => {
+			const weekNumber = item.week;
 
-	return <div>Program</div>;
+			if (!acc[weekNumber]) {
+				acc[weekNumber] = [];
+			}
+
+			acc[weekNumber].push(item);
+			return acc;
+		}, {});
+
+		setGroupedRunData(groupedData);
+	}, [runData]);
+
+	const renderWeeks = (runData) => {
+		return Object.entries(runData).map(([weekNumber, weekData]) => (
+			<div
+				className={styles.item}
+				key={weekNumber}
+			>
+				<div className={styles.header}>
+					<h2>Week {weekNumber}</h2>
+				</div>
+				{console.log(weekData)}
+				{weekData.map((day) => {
+					return (
+						<div key={day.day}>
+							<span>Day: {day.day}</span>
+							<span>Run type: {day.typeName}</span>
+							<span>Distance: {day.distance}</span>
+						</div>
+					);
+				})}
+			</div>
+		));
+	};
+
+	return (
+		<div className={styles.programContainer}>{renderWeeks(groupedRunData)}</div>
+	);
 }
 
 export default Program;
