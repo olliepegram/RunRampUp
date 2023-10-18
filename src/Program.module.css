@@ -8,13 +8,24 @@
 
 .item {
 	flex: 1;
-	flex-basis: 100%;
-	display: flex;
+	flex-basis: 40%;
+	margin: 10px;
+	border: 2px solid #5165f5;
+	border-radius: 4px;
 }
 
 .header {
+	padding: 7px 0;
 	background-color: #5165f5;
-	border-radius: 4px;
+	text-align: center;
 	color: #fcfafa;
-	padding: 5px;
+	letter-spacing: 1px;
+}
+
+.row {
+	padding: 20px;
+}
+
+.row:nth-child(even) {
+	background-color: #5164f51a;
 }

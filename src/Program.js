@@ -174,12 +174,16 @@ function Program({ user }) {
 				key={weekNumber}
 			>
 				<div className={styles.header}>
-					<h2>Week {weekNumber}</h2>
+					<h2>Week: {weekNumber}</h2>
 				</div>
+
 				{console.log(weekData)}
 				{weekData.map((day) => {
 					return (
-						<div key={day.day}>
+						<div
+							className={styles.row}
+							key={day.day}
+						>
 							<span>Day: {day.day}</span>
 							<span>Run type: {day.typeName}</span>
 							<span>Distance: {day.distance}</span>
