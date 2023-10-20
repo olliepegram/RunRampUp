@@ -60,20 +60,20 @@ const generateRunningProgram = (
 	let currentWeek = 1;
 	const schedule = [];
 
-	const findClosestActiveDay = activeDayId.map((day, i) => {
-		let dayClosestToLongRun = 0;
-		if (
-			(day > 0 && day >= longRunPickedDay + 3) ||
-			(day > 0 && day <= longRunPickedDay - 3)
-		) {
-			dayClosestToLongRun = day;
+	const findClosestActiveDay = activeDayId.findIndex((day, i) => {
+		let closestIndex = -1; // Initialize to -1, indicating no active day found.
+
+		// Define a range for days to skip (e.g., 3 days before and after the long run day)
+		const daysToSkip = 3;
+
+		// Check if the day is active and not within the range of days to skip
+		if (day > 0 && Math.abs(i - longRunPickedDay) > daysToSkip) {
+			closestIndex = i; // Set the closest index
 		}
-
-		return dayClosestToLongRun;
+		console.log(closestIndex);
+		return closestIndex !== -1; // Return true if an active day was found, indicating it should stop searching.
 	});
-
 	console.log(findClosestActiveDay);
-
 	while (currentWeeklyDistance < desiredRunningDistance) {
 		for (let i = 0; i < daysPerWeek; i++) {
 			if (activeDayId[i]) {
@@ -84,14 +84,16 @@ const generateRunningProgram = (
 						runType: catagory['long'],
 						distance: longRunDay,
 						typeName: 'long',
+						currentWeeklyDistance: Math.round(currentWeeklyDistance),
 					});
-				} else if (activeDayId[i] === 1) {
+				} else if (i === findClosestActiveDay) {
 					schedule.push({
 						week: currentWeek,
 						day: i + 1,
 						runType: catagory['speed'],
 						distance: weeklySpeed,
 						typeName: 'speed',
+						currentWeeklyDistance: Math.round(currentWeeklyDistance),
 					});
 				} else {
 					schedule.push({
@@ -100,6 +102,7 @@ const generateRunningProgram = (
 						runType: catagory['easy'],
 						distance: Number(easyRuns),
 						typeName: 'easy',
+						currentWeeklyDistance: Math.round(currentWeeklyDistance),
 					});
 				}
 			} else {
@@ -109,6 +112,7 @@ const generateRunningProgram = (
 					runType: catagory['rest'],
 					distance: rest,
 					typeName: `rest`,
+					currentWeeklyDistance: Math.round(currentWeeklyDistance),
 				});
 			}
 		}
@@ -176,8 +180,6 @@ function Program({ user }) {
 				<div className={styles.header}>
 					<h2>Week: {weekNumber}</h2>
 				</div>
-
-				{console.log(weekData)}
 				{weekData.map((day) => {
 					return (
 						<div
@@ -187,9 +189,13 @@ function Program({ user }) {
 							<span>Day: {day.day}</span>
 							<span>Run type: {day.typeName}</span>
 							<span>Distance: {day.distance}</span>
+							<span>Week Distance: {day.currentWeeklyDistance}</span>
 						</div>
 					);
 				})}
+				{weekData.length > 0 && (
+					<span>Weekly Distance: {weekData[0].currentWeeklyDistance}</span>
+				)}
 			</div>
 		));
 	};
