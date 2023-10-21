@@ -172,6 +172,15 @@ function Program({ user }) {
 	}, [runData]);
 
 	const renderWeeks = (runData) => {
+		const weekDays = [
+			'Monday',
+			'Tuesday',
+			'Wednesday',
+			'Thursday',
+			'Friday',
+			'Saturday',
+			'Sunday',
+		];
 		return Object.entries(runData).map(([weekNumber, weekData]) => (
 			<div
 				className={styles.item}
@@ -180,16 +189,23 @@ function Program({ user }) {
 				<div className={styles.header}>
 					<h2>Week: {weekNumber}</h2>
 				</div>
-				{weekData.map((day) => {
+				{weekData.map((day, i) => {
 					return (
 						<div
 							className={styles.row}
 							key={day.day}
 						>
-							<span>Day: {day.day}</span>
+							<div className={styles.weekDay}>
+								<span>{weekDays[i]}</span>
+							</div>
+
 							<span>Run type: {day.typeName}</span>
 							<span>Distance: {day.distance}</span>
 							<span>Week Distance: {day.currentWeeklyDistance}</span>
+							<span>
+								Heart Rate Zone: {day.runType.heartRate.minRate}-
+								{day.runType.heartRate.maxRate}
+							</span>
 						</div>
 					);
 				})}

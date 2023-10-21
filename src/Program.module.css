@@ -8,24 +8,37 @@
 
 .item {
 	flex: 1;
-	flex-basis: 40%;
+	flex-basis: 100%;
 	margin: 10px;
-	border: 2px solid #5165f5;
+
 	border-radius: 4px;
 }
 
 .header {
 	padding: 7px 0;
-	background-color: #5165f5;
+	/* background-color: #5165f5; */
 	text-align: center;
-	color: #fcfafa;
+	border: 2px solid #1f2439;
+	border-radius: 4px 4px 0 0;
 	letter-spacing: 1px;
 }
 
 .row {
-	padding: 20px;
+	display: flex;
 }
 
 .row:nth-child(even) {
 	background-color: #5164f51a;
+}
+.row:last-child {
+	border: 2px solid #1f2439;
+}
+
+.weekDay {
+	height: 100%;
+	/* border-left: 2px solid #1f2439; */
+	border-right: 2px solid #1f2439;
+	padding: 20px 0;
+	width: 100px;
+	text-align: center;
 }
