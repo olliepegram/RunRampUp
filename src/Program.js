@@ -189,28 +189,35 @@ function Program({ user }) {
 				<div className={styles.header}>
 					<h2>Week: {weekNumber}</h2>
 				</div>
-				{weekData.map((day, i) => {
-					return (
-						<div
-							className={styles.row}
-							key={day.day}
-						>
-							<div className={styles.weekDay}>
-								<span>{weekDays[i]}</span>
-							</div>
+				<table className={styles.tableWrapper}>
+					<tr className={styles.workoutHeaderWrapper}>
+						<td className={styles.workoutHeader}>Day</td>
+						<td className={styles.workoutHeader}>Run Type</td>
+						<td className={styles.workoutHeader}>Distance</td>
+						<td className={styles.workoutHeader}>Heart Rate (min - max)</td>
+					</tr>
+					{weekData.map((day, i) => {
+						return (
+							<tr
+								className={styles.row}
+								key={day.day}
+							>
+								<td className={styles.workoutSpan}>{weekDays[i]}</td>
 
-							<span>Run type: {day.typeName}</span>
-							<span>Distance: {day.distance}</span>
-							<span>Week Distance: {day.currentWeeklyDistance}</span>
-							<span>
-								Heart Rate Zone: {day.runType.heartRate.minRate}-
-								{day.runType.heartRate.maxRate}
-							</span>
-						</div>
-					);
-				})}
+								<td className={styles.workoutSpan}>{day.typeName}</td>
+								<td className={styles.workoutSpan}>{day.distance}</td>
+								<td className={styles.workoutSpan}>
+									{day.runType.heartRate.minRate} -{' '}
+									{day.runType.heartRate.maxRate}
+								</td>
+							</tr>
+						);
+					})}
+				</table>
 				{weekData.length > 0 && (
-					<span>Weekly Distance: {weekData[0].currentWeeklyDistance}</span>
+					<div className={styles.weeklyDistance}>
+						<span>Weekly Distance: {weekData[0].currentWeeklyDistance}</span>
+					</div>
 				)}
 			</div>
 		));
