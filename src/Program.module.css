@@ -27,9 +27,6 @@
 	width: 100%;
 }
 
-.row {
-}
-
 .row:nth-child(even) {
 	background-color: #5164f51a;
 }
