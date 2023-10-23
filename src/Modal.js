@@ -1,5 +1,7 @@
+import styles from './Modal.module.css';
+
 function Modal({ children }) {
-	return <div className='modal'>{children}</div>;
+	return <div className={styles.modal}>{children}</div>;
 }
 
 export default Modal;

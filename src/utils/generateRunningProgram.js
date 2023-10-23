@@ -33,6 +33,7 @@ export const generateRunningProgram = (
 		console.log(closestIndex);
 		return closestIndex !== -1; // Return true if an active day was found, indicating it should stop searching.
 	});
+
 	console.log(findClosestActiveDay);
 	while (currentWeeklyDistance < desiredRunningDistance) {
 		const weeklyDistanceIncreasePercentage = 0.1;
@@ -90,6 +91,6 @@ export const generateRunningProgram = (
 			weeklyDistanceIncreasePercentage * currentWeeklyDistance;
 		currentWeek++;
 	}
-	console.log(schedule);
+
 	return schedule;
 };

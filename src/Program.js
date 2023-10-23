@@ -78,8 +78,11 @@ function Program({ user }) {
 					</thead>
 					{weekData.map((day, i) => {
 						return (
-							<tbody className={styles.row}>
-								<tr key={day.day}>
+							<tbody
+								key={day.day}
+								className={styles.row}
+							>
+								<tr>
 									<td className={styles.workoutSpan}>{weekDays[i]}</td>
 
 									<td className={styles.workoutSpan}>{day.typeName}</td>

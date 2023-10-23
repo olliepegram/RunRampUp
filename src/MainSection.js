@@ -4,7 +4,7 @@ import CallToActionButton from './CallToActionButton';
 import styles from './MainSection.module.css';
 
 // Illustration by <a href="https://icons8.com/illustrations/author/ARh4OKrFtdfC">Pixeltrue</a> from <a href="https://icons8.com/illustrations">Ouch!</a>
-function MainSection() {
+function MainSection({ onModalOpen }) {
 	return (
 		<div className={styles.container}>
 			<div className={styles.left}>
@@ -28,7 +28,7 @@ function MainSection() {
 							textColor={'5165f5'}
 							borderColor={'5165f5'}
 						>
-							Build Program
+							<span onClick={onModalOpen}>Build Program</span>
 						</CallToActionButton>
 					</div>
 					<div>

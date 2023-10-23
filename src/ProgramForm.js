@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Program from './Program';
+
 import styles from './ProgramForm.module.css';
 
 const daysArr = [
@@ -57,7 +58,10 @@ function ProgramForm() {
 		content = <Program user={user} />;
 	} else {
 		content = (
-			<form onSubmit={handleOnSubmit}>
+			<form
+				onSubmit={handleOnSubmit}
+				className={styles.form}
+			>
 				<label
 					className={styles.label}
 					htmlFor='load'
