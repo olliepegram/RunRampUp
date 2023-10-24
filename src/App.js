@@ -18,7 +18,7 @@ function App() {
 			<MainSection onModalOpen={handleModalClick} />
 			{isModalOpen && (
 				<Modal>
-					<ProgramForm />
+					<ProgramForm onModalOpen={handleModalClick} />
 				</Modal>
 			)}
 		</div>

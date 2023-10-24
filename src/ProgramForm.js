@@ -13,7 +13,7 @@ const daysArr = [
 	{ day: 'Sunday', active: false, id: 7 },
 ];
 
-function ProgramForm() {
+function ProgramForm({ onModalOpen }) {
 	const [currentLoad, setCurrentLoad] = useState('');
 	const [maxHeartRate, setMaxHeartRate] = useState('');
 	const [minHeartRate, setMinHeartRate] = useState('');
@@ -24,23 +24,13 @@ function ProgramForm() {
 	const [isSubmitted, setIsSubmitted] = useState(false);
 	const [user, setUser] = useState({});
 
-	const [formValues, setFormValues] = useState({
-		currentLoad: '',
-		maxHeartRate: '',
-		minHeartRate: '',
-		goalLoad: '',
-		daysPerWeek: '',
-		longRunDay: '',
-	});
-
 	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
 	const questions = [
 		'What’s the total distance you run in a week currently?',
+		'What is your goal training load?',
 		'What is your max heart rate?',
 		'What is your resting heart rate?',
-		'What is your goal training load?',
-		'How many days per week can you run?',
 		'What days of the week would you like to run?',
 		'Which day of the week will be your long run?',
 	];
@@ -53,11 +43,6 @@ function ProgramForm() {
 				return day.id === id ? { ...day, active: !day.active } : day;
 			})
 		);
-	};
-
-	const handleInputChange = (e) => {
-		const { id, value } = e.target;
-		setFormValues({ ...formValues, [id]: Number(value) });
 	};
 
 	const handleNext = () => {
@@ -76,6 +61,10 @@ function ProgramForm() {
 		}
 	};
 
+	const handleClostForm = () => {
+		onModalOpen();
+	};
+
 	const handleOnSubmit = (e) => {
 		e.preventDefault();
 
@@ -92,6 +81,85 @@ function ProgramForm() {
 		setIsSubmitted(true);
 	};
 
+	const formContent = () => {
+		if (currentQuestionIndex === 4) {
+			return (
+				<div className={styles.daysContainer}>
+					{days.map(({ day, id, active }) => (
+						<button
+							className={`${styles.days} ${active ? styles.selectedDay : ''}`}
+							id='day'
+							value={day}
+							onClick={(e) => handleSelectDay(e, id)}
+							key={day}
+							required
+						>
+							{day}
+						</button>
+					))}
+				</div>
+			);
+		} else if (currentQuestionIndex === 5) {
+			return (
+				<select
+					required
+					className={styles.options}
+					value={longRunDay}
+					onChange={(e) => setLongRunDay(Number(e.target.value))}
+				>
+					{daysArr.map(({ day }, i) => (
+						<option
+							key={day}
+							value={i + 1}
+						>
+							{day}
+						</option>
+					))}
+				</select>
+			);
+		} else if (currentQuestionIndex === 0) {
+			return (
+				<input
+					required
+					type='number'
+					id='load'
+					value={currentLoad}
+					onChange={(e) => setCurrentLoad(Number(e.target.value))}
+				/>
+			);
+		} else if (currentQuestionIndex === 1) {
+			return (
+				<input
+					required
+					id='goal-load'
+					type='number'
+					value={goalLoad}
+					onChange={(e) => setGoalLoad(Number(e.target.value))}
+				/>
+			);
+		} else if (currentQuestionIndex === 2) {
+			return (
+				<input
+					required
+					type='number'
+					id='heartRate'
+					value={maxHeartRate}
+					onChange={(e) => setMaxHeartRate(Number(e.target.value))}
+				/>
+			);
+		} else if (currentQuestionIndex === 3) {
+			return (
+				<input
+					required
+					type='number'
+					id='minheartRate'
+					value={minHeartRate}
+					onChange={(e) => setMinHeartRate(Number(e.target.value))}
+				/>
+			);
+		}
+	};
+
 	let content;
 
 	if (isSubmitted) {
@@ -102,7 +170,12 @@ function ProgramForm() {
 				onSubmit={handleOnSubmit}
 				className={styles.form}
 			>
-				<div className={styles.close}>X</div>
+				<div
+					onClick={handleClostForm}
+					className={styles.close}
+				>
+					X
+				</div>
 				<h3>Program Builder</h3>
 				<label
 					className={styles.label}
@@ -110,30 +183,8 @@ function ProgramForm() {
 				>
 					{questions[currentQuestionIndex]}
 				</label>
-				{currentQuestionIndex === 5 ? (
-					<div className={styles.daysContainer}>
-						{days.map(({ day, id, active }) => (
-							<button
-								className={`${styles.days} ${active ? styles.selectedDay : ''}`}
-								id='day'
-								value={day}
-								onClick={(e) => handleSelectDay(e, id)}
-								key={day}
-								required
-							>
-								{day}
-							</button>
-						))}
-					</div>
-				) : (
-					<input
-						required
-						type='number'
-						id={`question-${currentQuestionIndex}`}
-						value={formValues[questions[currentQuestionIndex]]}
-						onChange={handleInputChange}
-					/>
-				)}
+
+				{formContent()}
 
 				{currentQuestionIndex !== questions.length - 1 ? (
 					<div className={styles.buttonsContainer}>
