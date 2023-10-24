@@ -1,21 +1,41 @@
 .form {
-	margin-top: 100px;
+	padding: 10px 30px;
+}
+
+h3 {
+	font-size: 36px;
+	font-weight: 600;
+	text-align: center;
+	letter-spacing: 1px;
+
+	padding-bottom: 40px;
+}
+
+.close {
+	background: #f2f5fa;
+	margin-top: 10px;
+	border-radius: 4px;
+	width: 20px;
+	padding: 10px;
+	text-align: center;
 }
 
 .label {
 	display: block;
-	margin-bottom: 10px;
-	font-size: 18px;
+	margin-bottom: 50px;
+	font-size: 24px;
 	color: #1f2439d7;
+	text-align: center;
 }
 
 input {
-	width: 250px;
+	width: 80%;
 	height: 35px;
 	border: 2px solid #1f2439;
-	margin-bottom: 54px;
 	background: none;
 	border-radius: 4px;
+	display: block;
+	margin: 0 auto 54px auto;
 }
 
 .daysContainer {
@@ -45,8 +65,36 @@ input {
 }
 
 .selectedDay {
-	border-color: #5165f5; /* Rectangle 17 */
+	border-color: #5165f5;
 	box-shadow: 0px 0px 2px 1px rgba(81, 101, 245, 0.8);
+}
+
+.buttonsContainer {
+	display: flex;
+	justify-content: end;
+	width: 100%;
+	padding: 20px 0;
+}
+
+.next,
+.prev {
+	width: 150px;
+	height: 45px;
+	border-radius: 4px;
+	border: none;
+	cursor: pointer;
+	margin: 60px 10px 0 10px;
+}
+
+.next {
+	background: #5165f5;
+	color: #fcfafa;
+}
+
+.prev {
+	background: #fcfafa;
+	border: 2px solid #5165f5;
+	color: #5165f5;
 }
 
 .submit {

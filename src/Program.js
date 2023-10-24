@@ -43,6 +43,7 @@ function Program({ user }) {
 			}
 
 			acc[weekNumber].push(item);
+			console.log(groupedRunData);
 			return acc;
 		}, {});
 

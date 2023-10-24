@@ -30,7 +30,6 @@ function ProgramForm() {
 		minHeartRate: '',
 		goalLoad: '',
 		daysPerWeek: '',
-		selectedDays: [daysArr],
 		longRunDay: '',
 	});
 
@@ -48,6 +47,12 @@ function ProgramForm() {
 
 	const handleSelectDay = (e, id) => {
 		e.preventDefault();
+
+		setDays((days) =>
+			days.map((day) => {
+				return day.id === id ? { ...day, active: !day.active } : day;
+			})
+		);
 	};
 
 	const handleInputChange = (e) => {
@@ -56,7 +61,7 @@ function ProgramForm() {
 	};
 
 	const handleNext = () => {
-		if (currentQuestionIndex < currentQuestionIndex.length < 1) {
+		if (currentQuestionIndex < questions.length - 1) {
 			setCurrentQuestionIndex(
 				(currentQuestionIndex) => currentQuestionIndex + 1
 			);
@@ -73,8 +78,6 @@ function ProgramForm() {
 
 	const handleOnSubmit = (e) => {
 		e.preventDefault();
-
-		// const activeDays = days.filter((day) => day.active);
 
 		setUser({
 			currentLoad,
@@ -99,6 +102,8 @@ function ProgramForm() {
 				onSubmit={handleOnSubmit}
 				className={styles.form}
 			>
+				<div className={styles.close}>X</div>
+				<h3>Program Builder</h3>
 				<label
 					className={styles.label}
 					htmlFor={`question-${currentQuestionIndex}`}
@@ -129,25 +134,34 @@ function ProgramForm() {
 						onChange={handleInputChange}
 					/>
 				)}
-				<button
-					type='button'
-					onClick={handlePrevious}
-					disabled={currentQuestionIndex === 0}
-				>
-					Previous
-				</button>
-				<button
-					type='button'
-					onClick={handleNext}
-				>
-					Next
-				</button>
-				<button
-					className={styles.submit}
-					type='submit'
-				>
-					Create Program
-				</button>
+
+				{currentQuestionIndex !== questions.length - 1 ? (
+					<div className={styles.buttonsContainer}>
+						<button
+							type='button'
+							onClick={handlePrevious}
+							disabled={currentQuestionIndex === 0}
+							className={styles.prev}
+						>
+							Previous
+						</button>
+
+						<button
+							type='button'
+							onClick={handleNext}
+							className={styles.next}
+						>
+							Next
+						</button>
+					</div>
+				) : (
+					<button
+						className={styles.submit}
+						type='submit'
+					>
+						Create Program
+					</button>
+				)}
 			</form>
 		);
 	}
