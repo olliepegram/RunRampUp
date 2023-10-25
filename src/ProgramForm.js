@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Program from './Program';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 
 import styles from './ProgramForm.module.css';
 
@@ -65,6 +66,19 @@ function ProgramForm({ onModalOpen }) {
 		onModalOpen();
 	};
 
+	const handleLastQuestion = (e) => {
+		setLongRunDay(Number(e.target.value));
+		setUser({
+			currentLoad,
+			maxHeartRate,
+			minHeartRate,
+			goalLoad,
+			days,
+			daysPerWeek,
+			longRunDay,
+		});
+	};
+
 	const handleOnSubmit = (e) => {
 		e.preventDefault();
 
@@ -105,7 +119,7 @@ function ProgramForm({ onModalOpen }) {
 					required
 					className={styles.options}
 					value={longRunDay}
-					onChange={(e) => setLongRunDay(Number(e.target.value))}
+					onChange={handleLastQuestion}
 				>
 					{daysArr.map(({ day }, i) => (
 						<option
@@ -163,7 +177,12 @@ function ProgramForm({ onModalOpen }) {
 	let content;
 
 	if (isSubmitted) {
-		content = <Program user={user} />;
+		content = (
+			<Link
+				to='/program'
+				state={{ user: user }}
+			/>
+		);
 	} else {
 		content = (
 			<form
@@ -210,7 +229,12 @@ function ProgramForm({ onModalOpen }) {
 						className={styles.submit}
 						type='submit'
 					>
-						Create Program
+						<Link
+							to='/program'
+							state={{ user: user }}
+						>
+							Generate Program
+						</Link>
 					</button>
 				)}
 			</form>

@@ -1,27 +1,22 @@
 import { useState } from 'react';
-import './App.css';
-import Header from './Header';
-import MainSection from './MainSection';
-import Modal from './Modal';
-import ProgramForm from './ProgramForm';
+import Home from './Home';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Program from './Program';
 
 function App() {
-	const [isModalOpen, setIsModalOpen] = useState(false);
-
-	const handleModalClick = () => {
-		setIsModalOpen(!isModalOpen);
-	};
-
 	return (
-		<div className='App'>
-			<Header />
-			<MainSection onModalOpen={handleModalClick} />
-			{isModalOpen && (
-				<Modal>
-					<ProgramForm onModalOpen={handleModalClick} />
-				</Modal>
-			)}
-		</div>
+		<Router>
+			<Routes>
+				<Route
+					path='/'
+					element={<Home />}
+				/>
+				<Route
+					path='/program'
+					element={<Program />}
+				/>
+			</Routes>
+		</Router>
 	);
 }
 

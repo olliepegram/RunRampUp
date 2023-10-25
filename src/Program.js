@@ -2,8 +2,14 @@ import { useEffect, useState } from 'react';
 import styles from './Program.module.css';
 import { calculateHeartRateZones } from './utils/calculateHeartRateZones';
 import { generateRunningProgram } from './utils/generateRunningProgram';
+import { useLocation } from 'react-router-dom';
+import Header from './Header';
 
-function Program({ user }) {
+function Program() {
+	const state = useLocation();
+	// https://stackoverflow.com/questions/41736048/what-is-a-state-in-link-component-of-react-router
+	const user = state.state?.user;
+	console.log(user);
 	const {
 		currentLoad,
 		goalLoad,
@@ -11,7 +17,7 @@ function Program({ user }) {
 		maxHeartRate,
 		days,
 		longRunDay,
-	} = user;
+	} = user || {};
 	const currentWeeklyDistance = currentLoad;
 	const desiredWeeklyDistance = goalLoad;
 	const longRunPickedDay = longRunDay;
@@ -43,7 +49,7 @@ function Program({ user }) {
 			}
 
 			acc[weekNumber].push(item);
-			console.log(groupedRunData);
+
 			return acc;
 		}, {});
 
@@ -107,7 +113,12 @@ function Program({ user }) {
 	};
 
 	return (
-		<div className={styles.programContainer}>{renderWeeks(groupedRunData)}</div>
+		<>
+			<Header />
+			<div className={styles.programContainer}>
+				{renderWeeks(groupedRunData)}
+			</div>
+		</>
 	);
 }
 
