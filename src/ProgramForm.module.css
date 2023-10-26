@@ -29,8 +29,8 @@ h3 {
 	text-align: center;
 }
 
-input {
-	width: 80%;
+.input {
+	width: 60%;
 	height: 35px;
 	border: 2px solid #1f2439;
 	background: none;
@@ -58,12 +58,43 @@ input {
 	letter-spacing: 0.5px;
 }
 
-.options {
+.dropdownContainer {
+	display: flex;
+	justify-content: center;
+}
+
+.dropdown {
 	width: 200px;
 	padding: 15px 0;
 	text-align: center;
 	background: none;
 	border: 2px solid #1f2439;
+	border-radius: 4px;
+}
+
+.conversionContainer {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 54px;
+}
+
+.conversionContainer input {
+	width: 50%;
+	margin-right: 5px;
+	height: 35px;
+	border: 2px solid #1f2439;
+	background: none;
+	border-radius: 4px;
+}
+
+.conversion {
+	width: 120px;
+	height: 41px;
+	text-align: center;
+	background: none;
+	border: 2px solid #1f2439;
+	border-radius: 4px;
+	margin-left: 5px;
 }
 
 .selectedDay {
@@ -108,4 +139,13 @@ input {
 	padding: 15px 0;
 	cursor: pointer;
 	margin-top: 54px;
+}
+
+.link {
+	text-decoration: none;
+	color: #fcfafa;
+}
+
+.link:active {
+	color: #fcfafa;
 }

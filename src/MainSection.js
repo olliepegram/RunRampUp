@@ -2,6 +2,7 @@ import arrow from './arrow.png';
 import jogging from './jogging.png';
 import CallToActionButton from './CallToActionButton';
 import styles from './MainSection.module.css';
+import { Link } from 'react-router-dom';
 
 // Illustration by <a href="https://icons8.com/illustrations/author/ARh4OKrFtdfC">Pixeltrue</a> from <a href="https://icons8.com/illustrations">Ouch!</a>
 function MainSection({ onModalOpen }) {
@@ -28,7 +29,12 @@ function MainSection({ onModalOpen }) {
 							textColor={'5165f5'}
 							borderColor={'5165f5'}
 						>
-							<span onClick={onModalOpen}>Build Program</span>
+							<span
+								style={{ width: '100%', display: 'block' }}
+								onClick={onModalOpen}
+							>
+								Build Program
+							</span>
 						</CallToActionButton>
 					</div>
 					<div>
@@ -36,7 +42,12 @@ function MainSection({ onModalOpen }) {
 							textColor={'1f2439'}
 							borderColor={'1f2439'}
 						>
-							How it Works
+							<Link
+								className={styles.link}
+								to='/about'
+							>
+								How it Works
+							</Link>
 						</CallToActionButton>
 					</div>
 				</div>

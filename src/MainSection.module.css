@@ -49,3 +49,14 @@ button {
 	font-size: 16px;
 	letter-spacing: 0.5px;
 }
+
+.link {
+	text-decoration: none;
+	color: #1f2439;
+	width: 100%;
+	display: block;
+}
+
+.link:active {
+	color: #1f2439;
+}

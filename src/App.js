@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Home from './Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Program from './Program';
+import About from './About';
 
 function App() {
 	return (
@@ -10,6 +11,10 @@ function App() {
 				<Route
 					path='/'
 					element={<Home />}
+				/>
+				<Route
+					path='/about'
+					element={<About />}
 				/>
 				<Route
 					path='/program'

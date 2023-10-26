@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import Program from './Program';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import styles from './ProgramForm.module.css';
 
@@ -14,6 +13,15 @@ const daysArr = [
 	{ day: 'Sunday', active: false, id: 7 },
 ];
 
+const questions = [
+	'What’s the total distance you run in a week currently?',
+	'What is your goal training load?',
+	'What is your max heart rate?',
+	'What is your resting heart rate?',
+	'What days of the week would you like to run?',
+	'Which day of the week will be your long run?',
+];
+
 function ProgramForm({ onModalOpen }) {
 	const [currentLoad, setCurrentLoad] = useState('');
 	const [maxHeartRate, setMaxHeartRate] = useState('');
@@ -22,19 +30,16 @@ function ProgramForm({ onModalOpen }) {
 	const [daysPerWeek, setDaysPerWeek] = useState('');
 	const [days, setDays] = useState(daysArr);
 	const [longRunDay, setLongRunDay] = useState('');
+	const [conversion, setConversion] = useState('km');
 	const [isSubmitted, setIsSubmitted] = useState(false);
+	const [questionFilledStatus, setQuestionFilledStatus] = useState(
+		Array(questions.length).fill(false)
+	);
 	const [user, setUser] = useState({});
 
 	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
-	const questions = [
-		'What’s the total distance you run in a week currently?',
-		'What is your goal training load?',
-		'What is your max heart rate?',
-		'What is your resting heart rate?',
-		'What days of the week would you like to run?',
-		'Which day of the week will be your long run?',
-	];
+	let currentQuestionFilled = questionFilledStatus[currentQuestionIndex];
 
 	const handleSelectDay = (e, id) => {
 		e.preventDefault();
@@ -46,8 +51,30 @@ function ProgramForm({ onModalOpen }) {
 		);
 	};
 
+	const handleInputChange = (e) => {
+		const inputValue = e.target.value;
+
+		if (currentQuestionIndex >= 0 && currentQuestionIndex < questions.length) {
+			setQuestionFilledStatus((prevStatus) => {
+				const newStatus = [...prevStatus];
+				newStatus[currentQuestionIndex] = Boolean(inputValue);
+				return newStatus;
+			});
+		}
+
+		if (currentQuestionIndex === 0) {
+			setCurrentLoad(Number(inputValue));
+		} else if (currentQuestionIndex === 1) {
+			setGoalLoad(Number(inputValue));
+		} else if (currentQuestionIndex === 2) {
+			setMaxHeartRate(Number(inputValue));
+		} else if (currentQuestionIndex === 3) {
+			setMinHeartRate(Number(inputValue));
+		}
+	};
+
 	const handleNext = () => {
-		if (currentQuestionIndex < questions.length - 1) {
+		if (currentQuestionIndex < questions.length - 1 && currentQuestionFilled) {
 			setCurrentQuestionIndex(
 				(currentQuestionIndex) => currentQuestionIndex + 1
 			);
@@ -76,6 +103,7 @@ function ProgramForm({ onModalOpen }) {
 			days,
 			daysPerWeek,
 			longRunDay,
+			conversion,
 		});
 	};
 
@@ -90,6 +118,7 @@ function ProgramForm({ onModalOpen }) {
 			days,
 			daysPerWeek,
 			longRunDay,
+			conversion,
 		});
 
 		setIsSubmitted(true);
@@ -115,31 +144,43 @@ function ProgramForm({ onModalOpen }) {
 			);
 		} else if (currentQuestionIndex === 5) {
 			return (
-				<select
-					required
-					className={styles.options}
-					value={longRunDay}
-					onChange={handleLastQuestion}
-				>
-					{daysArr.map(({ day }, i) => (
-						<option
-							key={day}
-							value={i + 1}
-						>
-							{day}
-						</option>
-					))}
-				</select>
+				<div className={styles.dropdownContainer}>
+					<select
+						required
+						className={styles.dropdown}
+						value={longRunDay}
+						onChange={handleLastQuestion}
+					>
+						{daysArr.map(({ day }, i) => (
+							<option
+								key={day}
+								value={i + 1}
+							>
+								{day}
+							</option>
+						))}
+					</select>
+				</div>
 			);
 		} else if (currentQuestionIndex === 0) {
 			return (
-				<input
-					required
-					type='number'
-					id='load'
-					value={currentLoad}
-					onChange={(e) => setCurrentLoad(Number(e.target.value))}
-				/>
+				<div className={styles.conversionContainer}>
+					<input
+						required
+						type='number'
+						id='load'
+						value={currentLoad}
+						onChange={handleInputChange}
+					/>
+					<select
+						value={conversion}
+						className={styles.conversion}
+						onChange={(e) => setConversion(e.target.value)}
+					>
+						<option value='km'>Kilometres</option>
+						<option value='miles'>Miles</option>
+					</select>
+				</div>
 			);
 		} else if (currentQuestionIndex === 1) {
 			return (
@@ -148,7 +189,8 @@ function ProgramForm({ onModalOpen }) {
 					id='goal-load'
 					type='number'
 					value={goalLoad}
-					onChange={(e) => setGoalLoad(Number(e.target.value))}
+					className={styles.input}
+					onChange={handleInputChange}
 				/>
 			);
 		} else if (currentQuestionIndex === 2) {
@@ -158,7 +200,8 @@ function ProgramForm({ onModalOpen }) {
 					type='number'
 					id='heartRate'
 					value={maxHeartRate}
-					onChange={(e) => setMaxHeartRate(Number(e.target.value))}
+					className={styles.input}
+					onChange={handleInputChange}
 				/>
 			);
 		} else if (currentQuestionIndex === 3) {
@@ -168,7 +211,8 @@ function ProgramForm({ onModalOpen }) {
 					type='number'
 					id='minheartRate'
 					value={minHeartRate}
-					onChange={(e) => setMinHeartRate(Number(e.target.value))}
+					className={styles.input}
+					onChange={handleInputChange}
 				/>
 			);
 		}
@@ -225,17 +269,18 @@ function ProgramForm({ onModalOpen }) {
 						</button>
 					</div>
 				) : (
-					<button
-						className={styles.submit}
-						type='submit'
+					<Link
+						to='/program'
+						state={{ user: user }}
+						className={styles.link}
 					>
-						<Link
-							to='/program'
-							state={{ user: user }}
+						<button
+							className={styles.submit}
+							type='submit'
 						>
 							Generate Program
-						</Link>
-					</button>
+						</button>
+					</Link>
 				)}
 			</form>
 		);
