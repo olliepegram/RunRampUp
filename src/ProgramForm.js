@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './ProgramForm.module.css';
+import MaxHeartRateCalc from './MaxHeartRateCalc';
 
 const daysArr = [
 	{ day: 'Monday', active: false, id: 1 },
@@ -16,13 +17,14 @@ const daysArr = [
 const questions = [
 	'What’s the total distance you run in a week currently?',
 	'What is your goal training load?',
-	'What is your max heart rate?',
+	`What is your max heart rate?`,
 	'What is your resting heart rate?',
 	'What days of the week would you like to run?',
 	'Which day of the week will be your long run?',
 ];
 
 function ProgramForm({ onModalOpen }) {
+	const [age, setAge] = useState(0);
 	const [currentLoad, setCurrentLoad] = useState('');
 	const [maxHeartRate, setMaxHeartRate] = useState('');
 	const [minHeartRate, setMinHeartRate] = useState('');
@@ -41,8 +43,28 @@ function ProgramForm({ onModalOpen }) {
 
 	let currentQuestionFilled = questionFilledStatus[currentQuestionIndex];
 
+	useEffect(() => {
+		if (age) {
+			setMaxHeartRate(220 - age);
+		}
+	}, [age]);
+
+	const handleAge = (e) => {
+		setAge(Number(e.target.value));
+	};
+
 	const handleSelectDay = (e, id) => {
 		e.preventDefault();
+
+		if (currentQuestionIndex === 4) {
+			setQuestionFilledStatus((prevStatus) => {
+				const newStatus = [...prevStatus];
+				newStatus[currentQuestionIndex] = true;
+				return newStatus;
+			});
+		}
+
+		console.log(questionFilledStatus);
 
 		setDays((days) =>
 			days.map((day) => {
@@ -195,14 +217,24 @@ function ProgramForm({ onModalOpen }) {
 			);
 		} else if (currentQuestionIndex === 2) {
 			return (
-				<input
-					required
-					type='number'
-					id='heartRate'
-					value={maxHeartRate}
-					className={styles.input}
-					onChange={handleInputChange}
-				/>
+				<>
+					{/* <span className={styles.toolTip}>
+						If you don't know your max heart rate, enter your age in the field
+						below
+					</span> */}
+					<MaxHeartRateCalc
+						onSetAge={handleAge}
+						age={age}
+					/>
+					<input
+						required
+						type='number'
+						id='heartRate'
+						value={maxHeartRate}
+						className={styles.input}
+						onChange={handleInputChange}
+					/>
+				</>
 			);
 		} else if (currentQuestionIndex === 3) {
 			return (

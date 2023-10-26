@@ -1,0 +1,28 @@
+.maxHeartRateInput {
+	width: 50px;
+	height: 35px;
+	border: none;
+	border-bottom: 2px solid #1f2439;
+	background: none;
+	text-align: center;
+	display: block;
+	margin-top: 20px;
+}
+
+.item {
+	justify-content: center;
+	display: flex;
+}
+
+.ageCalcContainer {
+	margin-top: -40px;
+	margin-bottom: 40px;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.ageCalcContainer span {
+	margin-top: 26px;
+	margin-right: 20px;
+}
