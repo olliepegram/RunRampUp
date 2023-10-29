@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import styles from './ProgramForm.module.css';
@@ -38,16 +38,38 @@ function ProgramForm({ onModalOpen }) {
 		Array(questions.length).fill(false)
 	);
 	const [user, setUser] = useState({});
-
 	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
 	let currentQuestionFilled = questionFilledStatus[currentQuestionIndex];
+
+	const handleNext = useCallback(() => {
+		if (currentQuestionIndex < questions.length - 1 && currentQuestionFilled) {
+			setCurrentQuestionIndex(
+				(currentQuestionIndex) => currentQuestionIndex + 1
+			);
+		}
+	}, [currentQuestionFilled, currentQuestionIndex]);
 
 	useEffect(() => {
 		if (age) {
 			setMaxHeartRate(220 - age);
 		}
 	}, [age]);
+
+	useEffect(() => {
+		const handleKeyPress = (e) => {
+			if (e.key === 'Enter') {
+				e.preventDefault(); // Prevent the form from submitting
+				handleNext(); // Programmatically click the "Next" button
+			}
+		};
+
+		document.addEventListener('keydown', handleKeyPress);
+
+		return () => {
+			document.removeEventListener('keydown', handleKeyPress);
+		};
+	}, [handleNext]);
 
 	const handleAge = (e) => {
 		if (currentQuestionIndex === 2) {
@@ -99,14 +121,6 @@ function ProgramForm({ onModalOpen }) {
 			setMaxHeartRate(parseInt(inputValue, 10));
 		} else if (currentQuestionIndex === 3) {
 			setMinHeartRate(parseInt(inputValue, 10));
-		}
-	};
-
-	const handleNext = () => {
-		if (currentQuestionIndex < questions.length - 1 && currentQuestionFilled) {
-			setCurrentQuestionIndex(
-				(currentQuestionIndex) => currentQuestionIndex + 1
-			);
 		}
 	};
 

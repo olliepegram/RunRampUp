@@ -7,6 +7,10 @@ function About() {
 			<Header />
 			<div className={styles.aboutContainer}>
 				<p>
+					Heart Rate Training should be the most important aspect of your
+					training program.
+				</p>
+				<p>
 					This is a tool developed by a runner for runners. The aim of this app
 					is to provide you a unique training program that stops you making the
 					same mistakes so many recreational athletes make. A lot of
