@@ -77,15 +77,6 @@ function About() {
 						source.
 					</li>
 				</ul>
-				<p>
-					In conclusion, Zone 2 training is your secret weapon for building a
-					strong running foundation. By dedicating a significant portion of your
-					training to this zone, you're ensuring long-term success, injury
-					prevention, and steady progress. Don't underestimate the benefits of
-					taking it easy – it's an essential part of becoming a better, more
-					resilient runner. So, embrace Zone 2 training and watch your running
-					capabilities soar.
-				</p>
 			</div>
 		</>
 	);

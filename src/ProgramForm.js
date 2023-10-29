@@ -24,7 +24,7 @@ const questions = [
 ];
 
 function ProgramForm({ onModalOpen }) {
-	const [age, setAge] = useState(0);
+	const [age, setAge] = useState('0');
 	const [currentLoad, setCurrentLoad] = useState('');
 	const [maxHeartRate, setMaxHeartRate] = useState('');
 	const [minHeartRate, setMinHeartRate] = useState('');
@@ -50,6 +50,13 @@ function ProgramForm({ onModalOpen }) {
 	}, [age]);
 
 	const handleAge = (e) => {
+		if (currentQuestionIndex === 2) {
+			setQuestionFilledStatus((prevStatus) => {
+				const newStatus = [...prevStatus];
+				newStatus[currentQuestionIndex] = true;
+				return newStatus;
+			});
+		}
 		setAge(Number(e.target.value));
 	};
 
@@ -85,13 +92,13 @@ function ProgramForm({ onModalOpen }) {
 		}
 
 		if (currentQuestionIndex === 0) {
-			setCurrentLoad(Number(inputValue));
+			setCurrentLoad(parseInt(inputValue, 10));
 		} else if (currentQuestionIndex === 1) {
-			setGoalLoad(Number(inputValue));
+			setGoalLoad(parseInt(inputValue, 10));
 		} else if (currentQuestionIndex === 2) {
-			setMaxHeartRate(Number(inputValue));
+			setMaxHeartRate(parseInt(inputValue, 10));
 		} else if (currentQuestionIndex === 3) {
-			setMinHeartRate(Number(inputValue));
+			setMinHeartRate(parseInt(inputValue, 10));
 		}
 	};
 
@@ -191,8 +198,9 @@ function ProgramForm({ onModalOpen }) {
 						required
 						type='number'
 						id='load'
-						value={currentLoad}
+						value={parseInt(currentLoad, 10)}
 						onChange={handleInputChange}
+						autoFocus
 					/>
 					<select
 						value={conversion}
@@ -210,9 +218,10 @@ function ProgramForm({ onModalOpen }) {
 					required
 					id='goal-load'
 					type='number'
-					value={goalLoad}
+					value={parseInt(goalLoad, 10)}
 					className={styles.input}
 					onChange={handleInputChange}
+					autoFocus
 				/>
 			);
 		} else if (currentQuestionIndex === 2) {
@@ -230,7 +239,7 @@ function ProgramForm({ onModalOpen }) {
 						required
 						type='number'
 						id='heartRate'
-						value={maxHeartRate}
+						value={parseInt(maxHeartRate, 10)}
 						className={styles.input}
 						onChange={handleInputChange}
 					/>
@@ -242,9 +251,10 @@ function ProgramForm({ onModalOpen }) {
 					required
 					type='number'
 					id='minheartRate'
-					value={minHeartRate}
+					value={parseInt(minHeartRate, 10)}
 					className={styles.input}
 					onChange={handleInputChange}
+					autoFocus
 				/>
 			);
 		}

@@ -13,9 +13,10 @@ function MaxHeartRateCalc({ onSetAge, age }) {
 				<span>Age:</span>
 				<input
 					type='text'
-					value={age}
+					value={parseInt(age, 10)}
 					onChange={onSetAge}
 					className={styles.maxHeartRateInput}
+					autoFocus
 				/>
 			</div>
 		</div>
