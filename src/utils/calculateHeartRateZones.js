@@ -22,7 +22,7 @@ export const calculateHeartRateZones = (minHeartRate, maxHeartRate) => {
 			minHeartRate + (maxHeartRate - minHeartRate) * maxPercentage
 		);
 
-		heartRateZones[zone] = { minRate, maxRate };
+		heartRateZones[zone] = { minRate, maxRate, minPercentage, maxPercentage };
 	}
 	return heartRateZones;
 };

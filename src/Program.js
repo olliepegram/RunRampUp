@@ -4,6 +4,7 @@ import { calculateHeartRateZones } from './utils/calculateHeartRateZones';
 import { generateRunningProgram } from './utils/generateRunningProgram';
 import { useLocation } from 'react-router-dom';
 import Header from './Header';
+import ProgramIntro from './ProgramIntro';
 
 function Program() {
 	const state = useLocation();
@@ -23,6 +24,7 @@ function Program() {
 	const longRunPickedDay = longRunDay;
 
 	const heartRateZones = calculateHeartRateZones(minHeartRate, maxHeartRate);
+
 	const catagories = {
 		easy: { heartRate: heartRateZones['Zone 2'], difficulty: 'easy' },
 		tempo: { heartRate: heartRateZones['tempo'], difficulty: 'hard' },
@@ -115,6 +117,10 @@ function Program() {
 	return (
 		<>
 			<Header />
+			<ProgramIntro
+				user={groupedRunData}
+				heartRateZones={heartRateZones}
+			/>
 			<div className={styles.programContainer}>
 				{renderWeeks(groupedRunData)}
 			</div>
