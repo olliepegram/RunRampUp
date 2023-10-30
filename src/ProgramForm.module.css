@@ -113,7 +113,7 @@ h3 {
 
 .buttonsContainer {
 	display: flex;
-	justify-content: end;
+	justify-content: flex-end;
 	width: 100%;
 	padding: 20px 0;
 }

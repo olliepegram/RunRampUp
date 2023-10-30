@@ -6,9 +6,12 @@ function About() {
 		<>
 			<Header />
 			<div className={styles.aboutContainer}>
-				<p>
-					Heart Rate Training should be the most important aspect of your
-					training program.
+				<p className={styles.quote}>
+					This app prioritises heart rate training and the adaptations that come
+					with each zone. All you need to get started is a{' '}
+					<span className={styles.bgText}>heart rate monitor</span>, a trusty{' '}
+					<span className={styles.bgText}>pair of shoes</span> and the{' '}
+					<span className={styles.bgText}>disipline to take it easy</span>
 				</p>
 				<p>
 					This is a tool developed by a runner for runners. The aim of this app
@@ -16,7 +19,7 @@ function About() {
 					same mistakes so many recreational athletes make. A lot of
 					recreational athletes skip straight to higher intensities, while there
 					is a time and place for high-intensity training, most of your training
-					load (65-70%) should be easier. We have this idea that if our run
+					load (65-80%) should be easier. We have this idea that if our run
 					doesn’t feel painful or you’re not red in the face struggling to
 					breath then it’s not doing anything. This is where Zone 2 Heart Rate
 					Training comes in.
