@@ -1,5 +1,22 @@
-.table {
+.introWrapper {
+	display: flex;
+	flex-direction: row;
 	margin-top: 100px;
+	margin: 100px auto 0 auto;
+	width: 80%;
+}
+
+.introTextWrapper {
+	width: 80%;
+}
+
+.tableWrapper {
+	justify-content: flex-end;
+	display: flex;
+	width: 100%;
+}
+
+.table {
 	border-collapse: collapse;
 }
 
@@ -12,7 +29,7 @@
 .zonesHeader th {
 	padding: 10px 20px 10px 20px;
 	text-align: center;
-	margin-right: 100px;
+
 	border-radius: 4px 4px 0 0;
 	border-bottom: 3px solid #fcfafa;
 }

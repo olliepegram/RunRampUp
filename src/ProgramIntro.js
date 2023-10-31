@@ -1,58 +1,35 @@
+import ProgramIntroZones from './ProgramIntroZones';
 import styles from './ProgramIntro.module.css';
 
 function ProgramIntro({ user, heartRateZones }) {
-	const zoneName = (zone) => {
-		if (zone === 'Zone 1') {
-			return 'Warmup / Recovery';
-		} else if (zone === 'Zone 2') {
-			return 'Easy';
-		} else if (zone === 'Zone 3') {
-			return 'Aerobic Capacity';
-		} else if (zone === 'Zone 4') {
-			return 'Anaerobic Capacity';
-		} else {
-			return 'Speed Training';
-		}
+	const weeksTrainingFor = () => {
+		const lastObj = user[Object.keys(user)[Object.keys(user).length - 1]];
+		// const lastWeek = lastObj.find((item) => {
+		// 	return item.week;
+		// });
+
+		// return lastWeek.week;
 	};
 
-	const renderZones = (zones) => {
+	const intro = () => {
 		return (
-			<table className={styles.table}>
-				<thead className={styles.zonesHeader}>
-					<tr>
-						<th>Zone</th>
-						<th>Effort</th>
-						<th>Target Heart Rate</th>
-						<th>Training Benefit</th>
-					</tr>
-				</thead>
-				<tbody>
-					{Object.entries(zones)
-						.slice(0, 5)
-						.map(([zone, percentage], i) => (
-							<tr
-								className={styles.zonesBody}
-								key={i}
-							>
-								<td>{zone}</td>
-								<td>
-									{percentage.minPercentage * 100}% -{' '}
-									{percentage.maxPercentage * 100}%
-								</td>
-								<td>
-									{percentage.minRate} - {percentage.maxRate}
-								</td>
-								<td>{zoneName(zone)}</td>
-							</tr>
-						))}
-				</tbody>
-			</table>
+			<div className={styles.introTextWrapper}>
+				<h2>Program Stats TODO</h2>
+				<p>Training weeks: {weeksTrainingFor()}</p>
+				<p>Ending weekly distance: </p>
+				<p>Long run day: </p>
+				<p>Speed / Temp day: </p>
+				<p>Longest run: </p>
+			</div>
 		);
 	};
 
-	console.log(heartRateZones);
-
-	return <div>{renderZones(heartRateZones)}</div>;
+	return (
+		<div className={styles.introWrapper}>
+			{intro()}
+			<ProgramIntroZones heartRateZones={heartRateZones} />
+		</div>
+	);
 }
 
 export default ProgramIntro;
