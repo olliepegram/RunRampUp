@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import styles from './ProgramForm.module.css';
 import MaxHeartRateCalc from './MaxHeartRateCalc';
@@ -21,6 +21,7 @@ const questions = [
 	'What is your resting heart rate?',
 	'What days of the week would you like to run?',
 	'Which day of the week will be your long run?',
+	'yeah bby',
 ];
 
 function ProgramForm({ onModalOpen }) {
@@ -33,12 +34,13 @@ function ProgramForm({ onModalOpen }) {
 	const [days, setDays] = useState(daysArr);
 	const [longRunDay, setLongRunDay] = useState('');
 	const [conversion, setConversion] = useState('km');
-	const [isSubmitted, setIsSubmitted] = useState(false);
+
 	const [questionFilledStatus, setQuestionFilledStatus] = useState(
 		Array(questions.length).fill(false)
 	);
 	const [user, setUser] = useState({});
 	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+	const navigate = useNavigate();
 
 	let currentQuestionFilled = questionFilledStatus[currentQuestionIndex];
 
@@ -121,6 +123,8 @@ function ProgramForm({ onModalOpen }) {
 			setMaxHeartRate(parseInt(inputValue, 10));
 		} else if (currentQuestionIndex === 3) {
 			setMinHeartRate(parseInt(inputValue, 10));
+		} else if (currentQuestionIndex === 5) {
+			setLongRunDay(Number(inputValue));
 		}
 	};
 
@@ -136,24 +140,33 @@ function ProgramForm({ onModalOpen }) {
 		onModalOpen();
 	};
 
-	const handleLastQuestion = (e) => {
-		setLongRunDay(Number(e.target.value));
-		setUser({
-			currentLoad,
-			maxHeartRate,
-			minHeartRate,
-			goalLoad,
-			days,
-			daysPerWeek,
-			longRunDay,
-			conversion,
-		});
-	};
+	// const handleLastQuestion = (e) => {
+	// 	if (currentQuestionIndex === 6) {
+	// 		setQuestionFilledStatus((prevStatus) => {
+	// 			const newStatus = [...prevStatus];
+	// 			newStatus[currentQuestionIndex] = true;
+	// 			return newStatus;
+	// 		});
+	// 	}
+
+	// 	setLongRunDay(Number(e.target.value));
+	// 	console.log(longRunDay);
+	// 	setUser({
+	// 		currentLoad,
+	// 		maxHeartRate,
+	// 		minHeartRate,
+	// 		goalLoad,
+	// 		days,
+	// 		daysPerWeek,
+	// 		longRunDay,
+	// 		conversion,
+	// 	});
+	// };
 
 	const handleOnSubmit = (e) => {
-		e.preventDefault();
+		e.preventDefault(); // Prevent the default form submission
 
-		setUser({
+		const data = {
 			currentLoad,
 			maxHeartRate,
 			minHeartRate,
@@ -162,9 +175,11 @@ function ProgramForm({ onModalOpen }) {
 			daysPerWeek,
 			longRunDay,
 			conversion,
-		});
+		};
 
-		setIsSubmitted(true);
+		// setUser(data);
+
+		navigate('/program', { state: { user: data } });
 	};
 
 	const formContent = () => {
@@ -192,7 +207,7 @@ function ProgramForm({ onModalOpen }) {
 						required
 						className={styles.dropdown}
 						value={longRunDay}
-						onChange={handleLastQuestion}
+						onChange={handleInputChange}
 					>
 						{daysArr.map(({ day }, i) => (
 							<option
@@ -271,76 +286,70 @@ function ProgramForm({ onModalOpen }) {
 					autoFocus
 				/>
 			);
+		} else if (currentQuestionIndex === 6) {
+			return <p>hello</p>;
 		}
 	};
 
 	let content;
 
-	if (isSubmitted) {
-		content = (
-			<Link
-				to='/program'
-				state={{ user: user }}
-			/>
-		);
-	} else {
-		content = (
-			<form
-				onSubmit={handleOnSubmit}
-				className={styles.form}
+	content = (
+		<form
+			onSubmit={handleOnSubmit}
+			className={styles.form}
+		>
+			<div
+				onClick={handleClostForm}
+				className={styles.close}
 			>
-				<div
-					onClick={handleClostForm}
-					className={styles.close}
-				>
-					X
-				</div>
-				<h3>Program Builder</h3>
-				<label
-					className={styles.label}
-					htmlFor={`question-${currentQuestionIndex}`}
-				>
-					{questions[currentQuestionIndex]}
-				</label>
+				X
+			</div>
+			<h3>Program Builder</h3>
+			<label
+				className={styles.label}
+				htmlFor={`question-${currentQuestionIndex}`}
+			>
+				{questions[currentQuestionIndex]}
+			</label>
 
-				{formContent()}
+			{formContent()}
 
-				{currentQuestionIndex !== questions.length - 1 ? (
-					<div className={styles.buttonsContainer}>
-						<button
-							type='button'
-							onClick={handlePrevious}
-							disabled={currentQuestionIndex === 0}
-							className={styles.prev}
-						>
-							Previous
-						</button>
-
-						<button
-							type='button'
-							onClick={handleNext}
-							className={styles.next}
-						>
-							Next
-						</button>
-					</div>
-				) : (
-					<Link
-						to='/program'
-						state={{ user: user }}
-						className={styles.link}
+			{currentQuestionIndex !== questions.length - 1 ? (
+				<div className={styles.buttonsContainer}>
+					<button
+						type='button'
+						onClick={handlePrevious}
+						disabled={currentQuestionIndex === 0}
+						className={styles.prev}
 					>
-						<button
-							className={styles.submit}
-							type='submit'
-						>
-							Generate Program
-						</button>
-					</Link>
-				)}
-			</form>
-		);
-	}
+						Previous
+					</button>
+
+					<button
+						type='button'
+						onClick={handleNext}
+						className={styles.next}
+					>
+						Next
+					</button>
+				</div>
+			) : (
+				// <Link
+				// 	to='/program'
+				// 	state={{ user: user }}
+				// 	className={styles.link}
+				// 	onClick={handleOnSubmit}
+				// >
+				<button
+					type='submit'
+					className={styles.submit}
+				>
+					Generate Program
+				</button>
+				// </Link>
+			)}
+		</form>
+	);
 
 	return <>{content}</>;
 }
