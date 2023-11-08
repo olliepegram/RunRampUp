@@ -18,6 +18,7 @@ function Program() {
 		maxHeartRate,
 		days,
 		longRunDay,
+		conversion,
 	} = user || {};
 	const currentWeeklyDistance = currentLoad;
 	const desiredWeeklyDistance = goalLoad;
@@ -96,10 +97,13 @@ function Program() {
 									<td className={styles.workoutSpan}>{weekDays[i]}</td>
 
 									<td className={styles.workoutSpan}>{day.typeName}</td>
-									<td className={styles.workoutSpan}>{day.distance}</td>
 									<td className={styles.workoutSpan}>
-										{day.runType.heartRate.minRate} -{' '}
-										{day.runType.heartRate.maxRate}
+										{day.typeName !== 'rest' ? day.distance : '-'}
+									</td>
+									<td className={styles.workoutSpan}>
+										{day.typeName !== 'rest'
+											? `${day.runType.heartRate.minRate} - ${day.runType.heartRate.maxRate}`
+											: '-'}
 									</td>
 								</tr>
 							</tbody>
@@ -122,6 +126,7 @@ function Program() {
 				user={groupedRunData}
 				heartRateZones={heartRateZones}
 				longRunDay={longRunDay}
+				conversion={conversion}
 			/>
 			<div className={styles.programContainer}>
 				{renderWeeks(groupedRunData)}

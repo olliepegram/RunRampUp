@@ -21,7 +21,7 @@ const questions = [
 	'What is your resting heart rate?',
 	'What days of the week would you like to run?',
 	'Which day of the week will be your long run?',
-	'yeah bby',
+	'',
 ];
 
 function ProgramForm({ onModalOpen }) {
@@ -140,31 +140,8 @@ function ProgramForm({ onModalOpen }) {
 		onModalOpen();
 	};
 
-	// const handleLastQuestion = (e) => {
-	// 	if (currentQuestionIndex === 6) {
-	// 		setQuestionFilledStatus((prevStatus) => {
-	// 			const newStatus = [...prevStatus];
-	// 			newStatus[currentQuestionIndex] = true;
-	// 			return newStatus;
-	// 		});
-	// 	}
-
-	// 	setLongRunDay(Number(e.target.value));
-	// 	console.log(longRunDay);
-	// 	setUser({
-	// 		currentLoad,
-	// 		maxHeartRate,
-	// 		minHeartRate,
-	// 		goalLoad,
-	// 		days,
-	// 		daysPerWeek,
-	// 		longRunDay,
-	// 		conversion,
-	// 	});
-	// };
-
 	const handleOnSubmit = (e) => {
-		e.preventDefault(); // Prevent the default form submission
+		e.preventDefault();
 
 		const data = {
 			currentLoad,
@@ -287,7 +264,7 @@ function ProgramForm({ onModalOpen }) {
 				/>
 			);
 		} else if (currentQuestionIndex === 6) {
-			return <p>hello</p>;
+			return <p></p>;
 		}
 	};
 

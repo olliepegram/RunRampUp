@@ -24,7 +24,7 @@ export const generateRunningProgram = (
 		let closestIndex = -1; // Initialize to -1, indicating no active day found.
 
 		// Define a range for days to skip (e.g., 3 days before and after the long run day)
-		const daysToSkip = 3;
+		const daysToSkip = 2;
 
 		// Check if the day is active and not within the range of days to skip
 		if (day > 0 && Math.abs(i - longRunPickedDay) > daysToSkip) {
@@ -91,6 +91,6 @@ export const generateRunningProgram = (
 			weeklyDistanceIncreasePercentage * currentWeeklyDistance;
 		currentWeek++;
 	}
-
+	console.log(schedule);
 	return schedule;
 };
