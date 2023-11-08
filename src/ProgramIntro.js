@@ -22,7 +22,7 @@ function ProgramIntro({ user, heartRateZones, longRunDay, conversion }) {
 		if (Array.isArray(lastObj)) {
 			lastWeek = lastObj.find((item) => item.week);
 			longestRun = lastObj.sort((a, b) => b.distance - a.distance)[0].distance;
-			speedDay = lastObj.find((item) => item.typeName === 'speed');
+			speedDay = lastObj.find((item) => item.typeName === 'speed').day - 1;
 		}
 	}
 
@@ -36,7 +36,7 @@ function ProgramIntro({ user, heartRateZones, longRunDay, conversion }) {
 					{conversion}
 				</p>
 				<p>Long run day: {longRunDay}</p>
-				<p>Speed / Tempo day: {weekDays[speedDay.day - 1]}</p>
+				<p>Speed / Tempo day: {weekDays[speedDay]}</p>
 				<p>Longest run: {longestRun}</p>
 			</div>
 		);

@@ -91,6 +91,6 @@ export const generateRunningProgram = (
 			weeklyDistanceIncreasePercentage * currentWeeklyDistance;
 		currentWeek++;
 	}
-	console.log(schedule);
+
 	return schedule;
 };
