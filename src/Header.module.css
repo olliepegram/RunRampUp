@@ -1,18 +1,23 @@
 .container {
+	width: 100%;
+	border-bottom: 1px solid #1f24393d;
+}
+
+.innerContainer {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	margin: 60px 0 0 0;
+	margin: 25px 5% 25px 5%;
 }
 
-.container h1 {
+.innerContainer h1 {
 	font-size: 36px;
 	font-weight: 600;
 	margin: 0;
 	letter-spacing: 1px;
 }
 
-.container button {
+.innerContainer button {
 	color: #5165f5;
 	font-weight: 500;
 	font-size: 16px;

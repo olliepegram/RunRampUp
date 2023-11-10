@@ -22,7 +22,7 @@ function ProgramIntro({ user, heartRateZones, longRunDay, conversion }) {
 		if (Array.isArray(lastObj)) {
 			lastWeek = lastObj.find((item) => item.week);
 			longestRun = lastObj.sort((a, b) => b.distance - a.distance)[0].distance;
-			speedDay = lastObj.find((item) => item.typeName === 'speed').day - 1;
+			// speedDay = lastObj.find((item) => item.typeName === 'speed').day - 1;
 		}
 	}
 

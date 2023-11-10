@@ -122,14 +122,16 @@ function Program() {
 	return (
 		<>
 			<Header />
-			<ProgramIntro
-				user={groupedRunData}
-				heartRateZones={heartRateZones}
-				longRunDay={longRunDay}
-				conversion={conversion}
-			/>
-			<div className={styles.programContainer}>
-				{renderWeeks(groupedRunData)}
+			<div className={styles.wrapper}>
+				<ProgramIntro
+					user={groupedRunData}
+					heartRateZones={heartRateZones}
+					longRunDay={longRunDay}
+					conversion={conversion}
+				/>
+				<div className={styles.programContainer}>
+					{renderWeeks(groupedRunData)}
+				</div>
 			</div>
 		</>
 	);

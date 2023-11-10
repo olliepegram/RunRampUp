@@ -1,3 +1,7 @@
+.wrapper {
+	margin: 0 5%;
+}
+
 .programContainer {
 	display: flex;
 	justify-content: space-between;

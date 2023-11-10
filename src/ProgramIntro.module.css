@@ -7,7 +7,7 @@
 }
 
 .introTextWrapper {
-	width: 80%;
+	width: 50%;
 }
 
 .tableWrapper {
@@ -29,7 +29,6 @@
 .zonesHeader th {
 	padding: 10px 20px 10px 20px;
 	text-align: center;
-
 	border-radius: 4px 4px 0 0;
 	border-bottom: 3px solid #fcfafa;
 }
@@ -67,4 +66,22 @@
 
 .zonesBody:nth-child(5) {
 	background-color: #ff65a3;
+}
+
+@media screen and (max-width: 1021px) {
+	.introWrapper {
+		flex-wrap: wrap;
+	}
+
+	.introTextWrapper {
+		margin-bottom: 50px;
+	}
+
+	.tableWrapper {
+		justify-content: center;
+	}
+
+	.table {
+		width: 100%;
+	}
 }
