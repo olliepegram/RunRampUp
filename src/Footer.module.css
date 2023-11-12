@@ -1,0 +1,11 @@
+.footer {
+	width: 100%;
+	clear: both;
+	position: relative;
+	color: #1f2439;
+	margin-left: 5%;
+}
+
+.footer .arrow {
+	width: 100px;
+}

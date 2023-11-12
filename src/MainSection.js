@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import ZoneCalc from './ZoneCalc';
 
 // Illustration by <a href="https://icons8.com/illustrations/author/ARh4OKrFtdfC">Pixeltrue</a> from <a href="https://icons8.com/illustrations">Ouch!</a>
-function MainSection({ onModalOpen }) {
+function MainSection({ onModalOpen, showZones, onSetShowZones }) {
 	return (
 		<div className={styles.containerImg}>
 			<div className={styles.container}>
@@ -60,7 +60,7 @@ function MainSection({ onModalOpen }) {
 						className={styles.jogging}
 						alt='illustration on person jogging with a cat'
 					/> */}
-					<ZoneCalc />
+					<ZoneCalc onSetShowZones={onSetShowZones} />
 				</div>
 			</div>
 		</div>
