@@ -4,7 +4,7 @@ function CallToActionButton({ children, textColor, borderColor }) {
 		width: '200px',
 		height: '45px',
 		background: 'none',
-		borderRadius: '4px',
+		borderRadius: '6px',
 		cursor: 'pointer',
 		color: `#${textColor}`,
 		display: 'block', // Makes the button expand to its container's width
