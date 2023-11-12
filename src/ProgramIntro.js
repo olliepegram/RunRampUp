@@ -45,7 +45,10 @@ function ProgramIntro({ user, heartRateZones, longRunDay, conversion }) {
 	return (
 		<div className={styles.introWrapper}>
 			{intro()}
-			<ProgramIntroZones heartRateZones={heartRateZones} />
+			<ProgramIntroZones
+				flex={'flex-end'}
+				heartRateZones={heartRateZones}
+			/>
 		</div>
 	);
 }

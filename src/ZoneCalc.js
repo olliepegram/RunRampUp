@@ -2,11 +2,15 @@ import { useState } from 'react';
 import styles from './ZoneCalc.module.css';
 import { calculateHeartRateZones } from './utils/calculateHeartRateZones';
 
-function ZoneCalc({ onSetShowZones }) {
-	const [maxHeartRate, setMaxHeartRate] = useState('');
-	const [minHeartRate, setMinHeartRate] = useState('');
+function ZoneCalc({
+	onSetShowZones,
+	minHeartRate,
+	maxHeartRate,
+	setMaxHeartRate,
+	setMinHeartRate,
+	setZones,
+}) {
 	const [age, setAge] = useState('');
-	const [zones, setZones] = useState(null);
 
 	const handleAge = (e) => {
 		const newAge = e.target.value;

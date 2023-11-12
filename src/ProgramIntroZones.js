@@ -1,6 +1,6 @@
 import styles from './ProgramIntro.module.css';
 
-function ProgramIntro({ heartRateZones }) {
+function ProgramIntro({ heartRateZones, width, flex }) {
 	const zoneName = (zone) => {
 		if (zone === 'Zone 1') {
 			return 'Warmup / Recovery';
@@ -17,7 +17,10 @@ function ProgramIntro({ heartRateZones }) {
 
 	const renderZones = (zones) => {
 		return (
-			<div className={styles.tableWrapper}>
+			<div
+				className={styles.tableWrapper}
+				style={{ width: `${width}%`, justifyContent: `${flex}` }}
+			>
 				<table className={styles.table}>
 					<thead className={styles.zonesHeader}>
 						<tr>
