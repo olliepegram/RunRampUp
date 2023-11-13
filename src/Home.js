@@ -6,6 +6,40 @@ import Modal from './Modal';
 import ProgramForm from './ProgramForm';
 import ProgramIntroZones from './ProgramIntroZones';
 import Footer from './Footer';
+import HomeIntro from './HomeIntro';
+
+const fakeZones = {
+	'Zone 1': {
+		minRate: 0,
+		maxRate: 0,
+		minPercentage: 0.5,
+		maxPercentage: 0.6,
+	},
+	'Zone 2': {
+		minRate: 0,
+		maxRate: 0,
+		minPercentage: 0.6,
+		maxPercentage: 0.7,
+	},
+	'Zone 3': {
+		minRate: 0,
+		maxRate: 0,
+		minPercentage: 0.7,
+		maxPercentage: 0.8,
+	},
+	'Zone 4': {
+		minRate: 0,
+		maxRate: 0,
+		minPercentage: 0.8,
+		maxPercentage: 0.9,
+	},
+	'Zone 5': {
+		minRate: 0,
+		maxRate: 0,
+		minPercentage: 0.9,
+		maxPercentage: 1,
+	},
+};
 
 function Home() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,6 +50,32 @@ function Home() {
 
 	const handleModalClick = () => {
 		setIsModalOpen(!isModalOpen);
+	};
+
+	const zonesSection = () => {
+		if (!showZones) {
+			return (
+				<>
+					<h3>Use the calculator above to find out your HR zones</h3>
+					<ProgramIntroZones
+						heartRateZones={fakeZones}
+						width={'100'}
+						flex={'center'}
+					/>
+				</>
+			);
+		} else {
+			return (
+				<>
+					<h3>yada</h3>
+					<ProgramIntroZones
+						heartRateZones={zones}
+						width={'100'}
+						flex={'center'}
+					/>
+				</>
+			);
+		}
 	};
 
 	return (
@@ -35,13 +95,9 @@ function Home() {
 					<ProgramForm onModalOpen={handleModalClick} />
 				</Modal>
 			)}
-			{showZones && (
-				<ProgramIntroZones
-					heartRateZones={zones}
-					width={'100'}
-					flex={'center'}
-				/>
-			)}
+			<HomeIntro />
+			<div className='black'>{zonesSection()}</div>
+
 			<Footer />
 		</div>
 	);

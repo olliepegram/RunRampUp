@@ -15,6 +15,8 @@ function ProgramIntro({ heartRateZones, width, flex }) {
 		}
 	};
 
+	console.log(heartRateZones);
+
 	const renderZones = (zones) => {
 		return (
 			<div

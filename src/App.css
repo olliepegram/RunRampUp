@@ -12,3 +12,9 @@ body {
 	margin-bottom: 100px;
 	min-height: 100%;
 }
+
+.black {
+	width: 100%;
+	background-color: #1f2439;
+	padding: 60px 0;
+}
