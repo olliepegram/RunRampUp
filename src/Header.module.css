@@ -7,7 +7,8 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	margin: 25px 5% 25px 5%;
+	margin: 25px auto 25px auto;
+	max-width: 1350px;
 }
 
 .innerContainer h1 {

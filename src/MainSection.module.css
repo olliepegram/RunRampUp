@@ -1,6 +1,7 @@
 .containerImg {
 	height: 650px;
-	margin: 40px 5%;
+	margin: 40px auto;
+	max-width: 1350px;
 	position: relative;
 }
 
