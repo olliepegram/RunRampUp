@@ -1,0 +1,32 @@
+.containerZone2 {
+	max-width: 1350px;
+	padding: 0 3%;
+	margin: 0 auto;
+}
+
+.containerZone2 h3 {
+	text-align: center;
+	padding: 0;
+	margin: 80px 0 0 0;
+	font-size: 36px;
+}
+
+.containerZone2 p {
+	text-align: center;
+	font-size: 18px;
+}
+
+.benefits {
+	display: flex;
+	justify-content: center;
+	margin-top: 60px;
+}
+
+.benefits div {
+	width: 300px;
+	height: 290px;
+	background-color: #f2f5f9;
+	margin: 0 10px;
+	border-radius: 6px;
+	text-align: center;
+}

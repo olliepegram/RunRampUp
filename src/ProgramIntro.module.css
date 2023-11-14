@@ -11,8 +11,8 @@
 }
 
 .tableWrapper {
-	display: flex;
-	width: 100%;
+	/* display: flex;
+	width: 100%; */
 }
 
 .table {
@@ -44,7 +44,8 @@
 }
 
 .zonesBody:last-child td {
-	border-radius: 0 0 4px 4px;
+	border-radius: 0 0 0px 0px;
+	border-bottom: 1px solid #ff65a3;
 }
 
 .zonesBody:nth-child(1) {

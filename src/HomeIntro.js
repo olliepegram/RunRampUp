@@ -17,7 +17,7 @@ function HomeIntro() {
 			<p>
 				Run Ramp Up is passionate about prioritizing heart rate (HR) zone
 				training. Our approach revolves around tailoring your workouts to
-				specific heart rate zones, each zone with unique adaptations and
+				specific heart rate zones, each zone with specific adaptations and
 				intensity levels.
 			</p>
 

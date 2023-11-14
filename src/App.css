@@ -16,5 +16,46 @@ body {
 .black {
 	width: 100%;
 	background-color: #1f2439;
-	padding: 60px 0;
+
+	display: flex;
+	justify-content: space-around;
+	flex-direction: row;
+	flex-grow: 1;
+}
+
+.blackTextContainer {
+	align-self: center;
+}
+
+.black h3 {
+	color: #fcfafa;
+	padding: 0;
+	margin: 0;
+	font-weight: lighter;
+	font-size: 36px;
+}
+
+.black p {
+	color: #fcfafa;
+	padding: 0;
+	margin: 10px 0 0 0;
+	font-size: 18px;
+}
+
+.calcZonesBtn {
+	width: 80%;
+	background-color: #fcfafa;
+	border: none;
+	color: #1f2439;
+	border-radius: 6px;
+	padding: 15px 0;
+	cursor: pointer;
+	display: block;
+	margin: 40px 0 0 0;
+}
+
+@media screen {
+	.black {
+		flex-wrap: wrap;
+	}
 }

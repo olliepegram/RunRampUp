@@ -4,14 +4,14 @@ import arrow from './arrow.png';
 function Footer() {
 	return (
 		<div className={styles.footer}>
-			{/* <div>
-				<img
+			<div>
+				{/* <img
 					src={arrow}
 					className={styles.arrow}
 					alt={'pic of stairs/logo'}
-				/>
-			</div> */}
-			{/* <p>Made by Ollie</p> */}
+				/> */}
+			</div>
+			<p>Made by Ollie</p>
 		</div>
 	);
 }

@@ -7,6 +7,7 @@ import ProgramForm from './ProgramForm';
 import ProgramIntroZones from './ProgramIntroZones';
 import Footer from './Footer';
 import HomeIntro from './HomeIntro';
+import HomeZone2 from './HomeZone2';
 
 const fakeZones = {
 	'Zone 1': {
@@ -56,23 +57,31 @@ function Home() {
 		if (!showZones) {
 			return (
 				<>
-					<h3>Use the calculator above to find out your HR zones</h3>
 					<ProgramIntroZones
 						heartRateZones={fakeZones}
-						width={'100'}
-						flex={'center'}
+						width={''}
+						flex={''}
 					/>
+					<div className='blackTextContainer'>
+						<h3>First step to training smart</h3>
+						<p>Is figuring out your HR zones</p>
+						<button className='calcZonesBtn'>Calculate Zones</button>
+					</div>
 				</>
 			);
 		} else {
 			return (
 				<>
-					<h3>yada</h3>
 					<ProgramIntroZones
 						heartRateZones={zones}
-						width={'100'}
-						flex={'center'}
+						width={''}
+						flex={''}
 					/>
+					<div className='blackTextContainer'>
+						<h3>First step to training smart</h3>
+						<p>Is figuring out your HR zones</p>
+						<button className='calcZonesBtn'>Calculate Zones</button>
+					</div>
 				</>
 			);
 		}
@@ -97,7 +106,7 @@ function Home() {
 			)}
 			<HomeIntro />
 			<div className='black'>{zonesSection()}</div>
-
+			<HomeZone2 />
 			<Footer />
 		</div>
 	);
