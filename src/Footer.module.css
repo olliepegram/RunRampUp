@@ -3,11 +3,13 @@
 	clear: both;
 	position: relative;
 	color: #fcfafa;
-	padding: 60px;
-	background-color: #f2f5f9;
+	padding: 0.5px 0;
+	background-color: #1f2439;
 	margin-top: 100px;
 }
 
-.footer .arrow {
-	width: 100px;
+.footer p {
+	text-align: center;
 }
+/* 1f2439 */
+/* fcfafa */

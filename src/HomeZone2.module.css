@@ -11,9 +11,14 @@
 	font-size: 36px;
 }
 
+.containerZone2 h4 {
+	margin-top: 50px;
+}
+
 .containerZone2 p {
 	text-align: center;
-	font-size: 18px;
+	font-size: 16px;
+	padding: 0 40px;
 }
 
 .benefits {
@@ -24,9 +29,22 @@
 
 .benefits div {
 	width: 300px;
-	height: 290px;
+	min-height: 290px;
 	background-color: #f2f5f9;
 	margin: 0 10px;
 	border-radius: 6px;
 	text-align: center;
+}
+
+@media only screen and (max-width: 1170px) {
+	.containerZone2 {
+		max-width: 800px;
+	}
+
+	.benefits {
+		flex-wrap: wrap;
+	}
+	.benefits div {
+		margin-top: 20px;
+	}
 }
