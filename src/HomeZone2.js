@@ -4,7 +4,7 @@ function HomeZone2() {
 	return (
 		<div className={styles.containerZone2}>
 			<h3>80% of our programming is zone 2 training</h3>
-			<p>See some of the benifits below</p>
+			<p className={styles.subHeading}>See some of the benifits below</p>
 			<div className={styles.benefits}>
 				<div>
 					<h4>Enhanced Mitochondrial Density</h4>

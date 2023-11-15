@@ -48,3 +48,16 @@
 		margin-top: 20px;
 	}
 }
+
+@media screen and (max-width: 510px) {
+	.subHeading {
+		margin-top: 20px;
+		font-size: 18px !important;
+	}
+	.containerZone2 h3 {
+		font-size: 30px;
+	}
+	.benefits div {
+		margin-top: 15px;
+	}
+}
