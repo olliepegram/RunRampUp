@@ -33,3 +33,16 @@
 .link:active {
 	color: #1f2439;
 }
+
+@media screen and (max-width: 510px) {
+	.innerContainer {
+		margin: 20px auto;
+		justify-content: center;
+	}
+	.innerContainer h1 {
+		font-size: 32px;
+	}
+	.btnHead {
+		display: none;
+	}
+}

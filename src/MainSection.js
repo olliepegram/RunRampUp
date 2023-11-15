@@ -35,10 +35,10 @@ function MainSection({
 							</p>
 						</div>
 						<div className={styles.buttons}>
-							<div style={{ marginRight: '30px' }}>
+							<div className={styles.btnOne}>
 								<CallToActionButton
-									textColor={'5165f5'}
-									borderColor={'5165f5'}
+									textColor={'fcfafa'}
+									borderColor={'1f2439'}
 								>
 									<span
 										style={{ width: '100%', display: 'block' }}
@@ -48,7 +48,7 @@ function MainSection({
 									</span>
 								</CallToActionButton>
 							</div>
-							<div>
+							<div className={styles.btnTwo}>
 								<CallToActionButton
 									textColor={'1f2439'}
 									borderColor={'1f2439'}

@@ -70,6 +70,13 @@
 	width: 100px;
 }
 
+.btnOne {
+	margin-right: 30px;
+	background-color: #1f2439;
+	border-radius: 6px;
+	color: #fcfafa;
+}
+
 .buttons {
 	display: flex;
 }
@@ -159,5 +166,23 @@ button {
 	.right {
 		padding-right: 0;
 		padding-top: 60px;
+		margin-right: 0;
+	}
+}
+
+@media screen and (max-width: 510px) {
+	.buttons {
+		justify-content: center;
+	}
+	.btnOne {
+		margin-right: 0px;
+
+		background-color: #1f2439;
+		border: none;
+		color: #fcfafa;
+		border-radius: 6px;
+	}
+	.btnTwo {
+		display: none;
 	}
 }

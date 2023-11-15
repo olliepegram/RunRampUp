@@ -17,12 +17,14 @@ function Header() {
 					</h1>
 				</div>
 				<div>
-					<CallToActionButton
-						textColor={'5165f5'}
-						borderColor={'5165f5'}
-					>
-						Program Builder
-					</CallToActionButton>
+					<div className={styles.btnHead}>
+						<CallToActionButton
+							textColor={'5165f5'}
+							borderColor={'5165f5'}
+						>
+							Program Builder
+						</CallToActionButton>
+					</div>
 				</div>
 			</div>
 		</header>

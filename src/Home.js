@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import './App.css';
 import Header from './Header';
 import MainSection from './MainSection';
@@ -48,6 +48,12 @@ function Home() {
 	const [maxHeartRate, setMaxHeartRate] = useState('');
 	const [minHeartRate, setMinHeartRate] = useState('');
 	const [zones, setZones] = useState(null);
+
+	const myRef = useRef(null);
+
+	const executeScroll = () => {
+		myRef.current.scrollIntoView();
+	};
 
 	const handleModalClick = () => {
 		setIsModalOpen(!isModalOpen);

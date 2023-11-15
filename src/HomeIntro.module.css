@@ -47,3 +47,9 @@
 		margin: 300px auto 0 auto;
 	}
 }
+
+@media screen and (max-width: 510px) {
+	.container {
+		margin: 400px auto 0 auto;
+	}
+}
