@@ -206,7 +206,6 @@ function ProgramForm({ onModalOpen }) {
 						id='load'
 						value={parseInt(currentLoad, 10)}
 						onChange={handleInputChange}
-						autoFocus
 					/>
 					<select
 						value={conversion}

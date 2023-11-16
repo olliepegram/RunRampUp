@@ -50,9 +50,14 @@ function Home() {
 	const [zones, setZones] = useState(null);
 
 	const myRef = useRef(null);
+	const myRefReverse = useRef(null);
 
 	const executeScroll = () => {
 		myRef.current.scrollIntoView();
+	};
+
+	const executeScrollReverse = () => {
+		myRefReverse.current.scrollIntoView();
 	};
 
 	const handleModalClick = () => {
@@ -71,23 +76,33 @@ function Home() {
 					<div className='blackTextContainer'>
 						<h3>First step to training smart</h3>
 						<p>Is figuring out your HR zones</p>
-						<button className='calcZonesBtn'>Calculate Zones</button>
+						<button
+							onClick={executeScrollReverse}
+							className='calcZonesBtn'
+						>
+							Calculate Zones
+						</button>
 					</div>
 				</>
 			);
 		} else {
 			return (
 				<>
-					<div className='blackTextContainer'>
-						<h3>First step to training smart</h3>
-						<p>Is figuring out your HR zones</p>
-						<button className='calcZonesBtn'>Calculate Zones</button>
-					</div>
 					<ProgramIntroZones
 						heartRateZones={zones}
 						width={''}
 						flex={''}
 					/>
+					<div className='blackTextContainer'>
+						<h3>First step to training smart</h3>
+						<p>Is figuring out your HR zones</p>
+						<button
+							onClick={executeScrollReverse}
+							className='calcZonesBtn'
+						>
+							Calculate Zones
+						</button>
+					</div>
 				</>
 			);
 		}
@@ -104,6 +119,8 @@ function Home() {
 				minHeartRate={minHeartRate}
 				setMinHeartRate={setMinHeartRate}
 				setZones={setZones}
+				handleScroll={executeScroll}
+				myRefReverse={myRefReverse}
 			/>
 			{isModalOpen && (
 				<Modal>
@@ -111,7 +128,12 @@ function Home() {
 				</Modal>
 			)}
 			<HomeIntro />
-			<div className='black'>{zonesSection()}</div>
+			<div
+				ref={myRef}
+				className='black'
+			>
+				{zonesSection()}
+			</div>
 			<HomeZone2 />
 			<Footer />
 		</div>

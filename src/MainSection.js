@@ -14,6 +14,8 @@ function MainSection({
 	setMaxHeartRate,
 	setMinHeartRate,
 	setZones,
+	handleScroll,
+	myRefReverse,
 }) {
 	return (
 		<div className={styles.outerContainer}>
@@ -76,6 +78,8 @@ function MainSection({
 							setMinHeartRate={setMinHeartRate}
 							onSetShowZones={onSetShowZones}
 							setZones={setZones}
+							handleScroll={handleScroll}
+							myRefReverse={myRefReverse}
 						/>
 					</div>
 				</div>

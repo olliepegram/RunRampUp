@@ -9,6 +9,8 @@ function ZoneCalc({
 	setMaxHeartRate,
 	setMinHeartRate,
 	setZones,
+	handleScroll,
+	myRefReverse,
 }) {
 	const [age, setAge] = useState('');
 
@@ -34,10 +36,14 @@ function ZoneCalc({
 		);
 
 		onSetShowZones(true);
+		handleScroll();
 	};
 
 	return (
-		<div className={styles.container}>
+		<div
+			ref={myRefReverse}
+			className={styles.container}
+		>
 			<h3>Heart Rate Zones Calculator</h3>
 			<form onSubmit={handleSubmit}>
 				<div className={styles.innerContainer}>
