@@ -63,16 +63,16 @@ function Home() {
 		if (!showZones) {
 			return (
 				<>
-					<div className='blackTextContainer'>
-						<h3>First step to training smart</h3>
-						<p>Is figuring out your HR zones</p>
-						<button className='calcZonesBtn'>Calculate Zones</button>
-					</div>
 					<ProgramIntroZones
 						heartRateZones={fakeZones}
 						width={''}
 						flex={''}
 					/>
+					<div className='blackTextContainer'>
+						<h3>First step to training smart</h3>
+						<p>Is figuring out your HR zones</p>
+						<button className='calcZonesBtn'>Calculate Zones</button>
+					</div>
 				</>
 			);
 		} else {

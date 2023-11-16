@@ -151,7 +151,7 @@ button {
 	}
 
 	.container h2,
-	p {
+	.container p {
 		text-align: center;
 	}
 
@@ -184,5 +184,13 @@ button {
 	}
 	.btnTwo {
 		display: none;
+	}
+
+	.outerContainer {
+		padding: 0 0;
+	}
+
+	.containerImg {
+		max-width: 100%;
 	}
 }

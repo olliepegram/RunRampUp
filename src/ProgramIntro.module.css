@@ -85,3 +85,14 @@
 		width: 100%;
 	}
 }
+
+@media screen and (max-width: 530px) {
+	.zonesHeader th {
+		padding: 10px;
+	}
+
+	.zonesBody td {
+		font-size: 14px;
+		padding: 10px;
+	}
+}

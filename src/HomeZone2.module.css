@@ -47,6 +47,9 @@
 	.benefits div {
 		margin-top: 20px;
 	}
+	.subHeading {
+		margin-top: 20px;
+	}
 }
 
 @media screen and (max-width: 510px) {

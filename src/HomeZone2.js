@@ -3,8 +3,11 @@ import styles from './HomeZone2.module.css';
 function HomeZone2() {
 	return (
 		<div className={styles.containerZone2}>
-			<h3>80% of our programming is zone 2 training</h3>
-			<p className={styles.subHeading}>See some of the benifits below</p>
+			<h3>80/20</h3>
+			<p className={styles.subHeading}>
+				80% of our programs are low intensity zone 2 training. Take a look at
+				the benifits below
+			</p>
 			<div className={styles.benefits}>
 				<div>
 					<h4>Enhanced Mitochondrial Density</h4>
