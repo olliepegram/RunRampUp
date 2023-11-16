@@ -10,7 +10,7 @@ function Program() {
 	const location = useLocation();
 	// https://stackoverflow.com/questions/41736048/what-is-a-state-in-link-component-of-react-router
 	const user = location.state && location.state.user;
-	console.log(user);
+
 	const {
 		currentLoad,
 		goalLoad,
@@ -23,7 +23,6 @@ function Program() {
 	const currentWeeklyDistance = currentLoad;
 	const desiredWeeklyDistance = goalLoad;
 	const longRunPickedDay = longRunDay;
-	console.log(longRunDay);
 
 	const heartRateZones = calculateHeartRateZones(minHeartRate, maxHeartRate);
 
@@ -31,7 +30,7 @@ function Program() {
 		easy: { heartRate: heartRateZones['Zone 2'], difficulty: 'easy' },
 		tempo: { heartRate: heartRateZones['tempo'], difficulty: 'hard' },
 		speed: { heartRate: heartRateZones['speed'], difficulty: 'hard' },
-		long: { heartRate: heartRateZones['long'], difficulty: 'hard' },
+		long: { heartRate: heartRateZones['Zone 2'], difficulty: 'hard' },
 		rest: { heartRate: heartRateZones['rest'], difficulty: 'easy' },
 	};
 	const program = generateRunningProgram(
@@ -60,7 +59,7 @@ function Program() {
 		setGroupedRunData(groupedData);
 	}, [runData]);
 
-	const renderWeeks = (runData) => {
+	const renderWeeks = (groupedRunData) => {
 		const weekDays = [
 			'Monday',
 			'Tuesday',
@@ -70,65 +69,80 @@ function Program() {
 			'Saturday',
 			'Sunday',
 		];
-		return Object.entries(runData).map(([weekNumber, weekData]) => (
-			<div
-				className={styles.item}
-				key={weekNumber}
-			>
-				<div className={styles.header}>
-					<h2>Week: {weekNumber}</h2>
-				</div>
-				<table className={styles.tableWrapper}>
-					<thead>
-						<tr className={styles.workoutHeaderWrapper}>
-							<td className={styles.workoutHeader}>Day</td>
-							<td className={styles.workoutHeader}>Run Type</td>
-							<td className={styles.workoutHeader}>Distance</td>
-							<td className={styles.workoutHeader}>Heart Rate (min - max)</td>
-						</tr>
-					</thead>
-					{weekData.map((day, i) => {
-						return (
-							<tbody
-								key={day.day}
-								className={styles.row}
-							>
-								<tr>
-									<td className={styles.workoutSpan}>{weekDays[i]}</td>
 
-									<td className={styles.workoutSpan}>{day.typeName}</td>
-									<td className={styles.workoutSpan}>
-										{day.typeName !== 'rest' ? day.distance : '-'}
+		const allDays = Object.values(groupedRunData)
+			.flatMap((weekData) => weekData.map((day) => day.day))
+			.filter((value, index, self) => self.indexOf(value) === index);
+		console.log(allDays);
+		return (
+			<table className={styles.tableWrapper}>
+				<thead>
+					<tr>
+						<th className={styles.workoutHeader}>Week</th>
+						{weekDays.map((day, index) => (
+							<th
+								key={index}
+								className={styles.workoutHeader}
+							>
+								{day}
+							</th>
+						))}
+					</tr>
+				</thead>
+				<tbody>
+					{Object.entries(groupedRunData).map(([weekNumber, weekData]) => (
+						<tr
+							className={styles.row}
+							key={weekNumber}
+						>
+							<td className={styles.weekHeader}>
+								<div>Week: {weekNumber}</div>
+								<div>Distance:</div>
+								<div>HR:</div>
+							</td>
+
+							{allDays.map((day) => {
+								const dayData = weekData.find((item) => item.day === day);
+								return (
+									<td
+										key={day}
+										className={styles.workoutSpan}
+									>
+										{dayData && (
+											<>
+												<div>{dayData.typeName}</div>
+												<div>
+													{dayData.typeName !== 'rest'
+														? `${Math.round(dayData.distance)} KMs`
+														: '-'}
+												</div>
+												<div>
+													{dayData.typeName !== 'rest'
+														? `${dayData.runType.heartRate.minRate} - ${dayData.runType.heartRate.maxRate}`
+														: '-'}
+												</div>
+											</>
+										)}
 									</td>
-									<td className={styles.workoutSpan}>
-										{day.typeName !== 'rest'
-											? `${day.runType.heartRate.minRate} - ${day.runType.heartRate.maxRate}`
-											: '-'}
-									</td>
-								</tr>
-							</tbody>
-						);
-					})}
-				</table>
-				{weekData.length > 0 && (
-					<div className={styles.weeklyDistance}>
-						<span>Weekly Distance: {weekData[0].currentWeeklyDistance}</span>
-					</div>
-				)}
-			</div>
-		));
+								);
+							})}
+						</tr>
+					))}
+				</tbody>
+			</table>
+		);
 	};
 
 	return (
 		<>
 			<Header />
 			<div className={styles.wrapper}>
-				<ProgramIntro
+				{/* <ProgramIntro
 					user={groupedRunData}
 					heartRateZones={heartRateZones}
 					longRunDay={longRunDay}
 					conversion={conversion}
-				/>
+				/> */}
 				<div className={styles.programContainer}>
 					{renderWeeks(groupedRunData)}
 				</div>
