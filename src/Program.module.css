@@ -1,5 +1,7 @@
 .wrapper {
-	margin: 0 5%;
+	padding: 0 3%;
+	max-width: 1350px;
+	margin: 0 auto;
 	overflow-x: auto;
 	white-space: nowrap;
 }
@@ -50,6 +52,14 @@
 	background: #1f2439;
 	color: #fcfafa;
 	/* border-radius: 6px 6px 0 0; */
+}
+
+.workoutHeader:first-child {
+	border-radius: 6px 0px 0 0;
+}
+
+.workoutHeader:last-child {
+	border-radius: 0px 6px 0 0;
 }
 
 .weekHeader div {

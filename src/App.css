@@ -14,12 +14,18 @@ body {
 	min-height: 100%;
 }
 
+.blackContent {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	max-width: 1350px;
+	margin: 0 auto;
+	padding: 0 3%;
+}
+
 .black {
 	width: 100%;
 	background-color: #1f2439;
-	display: flex;
-	justify-content: space-around;
-	flex-direction: row;
 }
 
 .blackTextContainer {
@@ -53,10 +59,11 @@ body {
 	margin: 40px 0 0 0;
 }
 
-@media screen and (max-width: 1010px) {
-	.black {
+@media screen and (max-width: 1060px) {
+	.blackContent {
 		flex-wrap: wrap;
 		flex-direction: column;
+		padding: 0;
 	}
 
 	.black h3,

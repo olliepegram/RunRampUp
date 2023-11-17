@@ -68,7 +68,7 @@
 	background-color: #ff65a3;
 }
 
-@media screen and (max-width: 1021px) {
+@media screen and (max-width: 1060px) {
 	.introWrapper {
 		flex-wrap: wrap;
 	}

@@ -132,7 +132,7 @@ function Home() {
 				ref={myRef}
 				className='black'
 			>
-				{zonesSection()}
+				<div className={'blackContent'}>{zonesSection()}</div>
 			</div>
 			<HomeZone2 />
 			<Footer />

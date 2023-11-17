@@ -17,3 +17,14 @@
 	background-color: #fcfafa;
 	border-radius: 6px;
 }
+
+@media only screen and (max-width: 690px) {
+	.modal {
+		overflow-y: auto;
+	}
+	.modalContent {
+		width: 100%;
+		height: auto;
+		padding-top: 100px;
+	}
+}

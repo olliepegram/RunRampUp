@@ -25,7 +25,7 @@ const questions = [
 ];
 
 function ProgramForm({ onModalOpen }) {
-	const [age, setAge] = useState('0');
+	const [age, setAge] = useState('');
 	const [currentLoad, setCurrentLoad] = useState('');
 	const [maxHeartRate, setMaxHeartRate] = useState('');
 	const [minHeartRate, setMinHeartRate] = useState('');
@@ -38,7 +38,7 @@ function ProgramForm({ onModalOpen }) {
 	const [questionFilledStatus, setQuestionFilledStatus] = useState(
 		Array(questions.length).fill(false)
 	);
-	const [user, setUser] = useState({});
+
 	const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 	const navigate = useNavigate();
 
@@ -144,17 +144,15 @@ function ProgramForm({ onModalOpen }) {
 		e.preventDefault();
 
 		const data = {
-			currentLoad,
-			maxHeartRate,
-			minHeartRate,
-			goalLoad,
+			currentLoad: Number(currentLoad),
+			maxHeartRate: Number(maxHeartRate),
+			minHeartRate: Number(minHeartRate),
+			goalLoad: Number(goalLoad),
 			days,
 			daysPerWeek,
 			longRunDay,
 			conversion,
 		};
-
-		// setUser(data);
 
 		navigate('/program', { state: { user: data } });
 	};
@@ -172,7 +170,7 @@ function ProgramForm({ onModalOpen }) {
 							key={day}
 							required
 						>
-							{day}
+							<span>{day}</span>
 						</button>
 					))}
 				</div>
@@ -204,7 +202,7 @@ function ProgramForm({ onModalOpen }) {
 						required
 						type='number'
 						id='load'
-						value={parseInt(currentLoad, 10)}
+						value={currentLoad}
 						onChange={handleInputChange}
 					/>
 					<select
@@ -223,7 +221,7 @@ function ProgramForm({ onModalOpen }) {
 					required
 					id='goal-load'
 					type='number'
-					value={parseInt(goalLoad, 10)}
+					value={goalLoad}
 					className={styles.input}
 					onChange={handleInputChange}
 					autoFocus
@@ -244,7 +242,7 @@ function ProgramForm({ onModalOpen }) {
 						required
 						type='number'
 						id='heartRate'
-						value={parseInt(maxHeartRate, 10)}
+						value={maxHeartRate}
 						className={styles.input}
 						onChange={handleInputChange}
 					/>
@@ -256,7 +254,7 @@ function ProgramForm({ onModalOpen }) {
 					required
 					type='number'
 					id='minheartRate'
-					value={parseInt(minHeartRate, 10)}
+					value={minHeartRate}
 					className={styles.input}
 					onChange={handleInputChange}
 					autoFocus

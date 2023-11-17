@@ -108,7 +108,11 @@ h3 {
 
 .selectedDay {
 	border-color: #5165f5;
-	box-shadow: 0px 0px 2px 1px rgba(81, 101, 245, 0.8);
+	box-shadow: 0px 0px 2px 1px rgba(81, 100, 245, 0.379);
+}
+
+.selectedDay span {
+	color: #5165f5;
 }
 
 .buttonsContainer {
@@ -122,7 +126,7 @@ h3 {
 .prev {
 	width: 150px;
 	height: 45px;
-	border-radius: 4px;
+	border-radius: 6px;
 	border: none;
 	cursor: pointer;
 	margin: 60px 10px 0 10px;
@@ -157,4 +161,17 @@ h3 {
 
 .link:active {
 	color: #fcfafa;
+}
+
+@media only screen and (max-width: 690px) {
+	.buttonsContainer {
+		justify-content: center;
+		flex-wrap: wrap;
+		padding: 10px 0;
+	}
+
+	.next,
+	.prev {
+		margin: 20px 10px 0 10px;
+	}
 }
