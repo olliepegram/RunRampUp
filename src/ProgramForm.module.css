@@ -167,11 +167,11 @@ h3 {
 	.buttonsContainer {
 		justify-content: center;
 		flex-wrap: wrap;
-		padding: 10px 0;
+		padding: 40px 0px;
 	}
 
 	.next,
 	.prev {
-		margin: 20px 10px 0 10px;
+		margin: 5px;
 	}
 }

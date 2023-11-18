@@ -230,10 +230,6 @@ function ProgramForm({ onModalOpen }) {
 		} else if (currentQuestionIndex === 2) {
 			return (
 				<>
-					{/* <span className={styles.toolTip}>
-						If you don't know your max heart rate, enter your age in the field
-						below
-					</span> */}
 					<MaxHeartRateCalc
 						onSetAge={handleAge}
 						age={age}
