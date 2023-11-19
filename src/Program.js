@@ -87,6 +87,7 @@ function Program() {
 								{day}
 							</th>
 						))}
+						<th className={styles.workoutHeader}>Total Distance</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -126,6 +127,9 @@ function Program() {
 									</td>
 								);
 							})}
+							<td className={styles.workoutSpan}>
+								{weekData[0].currentWeeklyDistance} KMs
+							</td>
 						</tr>
 					))}
 				</tbody>

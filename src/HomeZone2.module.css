@@ -27,13 +27,17 @@
 	margin-top: 60px;
 }
 
-.benefits div {
+.benefits .contentWrapper {
 	width: 300px;
 	min-height: 290px;
 	background-color: #f2f5f9;
-	margin: 0 10px;
+	margin: 10px 10px;
 	border-radius: 6px;
 	text-align: center;
+	padding-bottom: 40px;
+}
+
+.upperContent {
 }
 
 @media only screen and (max-width: 1170px) {

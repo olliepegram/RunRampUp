@@ -25,7 +25,7 @@ const questions = [
 ];
 
 function ProgramForm({ onModalOpen }) {
-	const [age, setAge] = useState('');
+	const [age, setAge] = useState('0');
 	const [currentLoad, setCurrentLoad] = useState('');
 	const [maxHeartRate, setMaxHeartRate] = useState('');
 	const [minHeartRate, setMinHeartRate] = useState('');
@@ -314,7 +314,7 @@ function ProgramForm({ onModalOpen }) {
 					type='submit'
 					className={styles.submit}
 				>
-					Generate Program
+					Generate Program <span className={styles.arrowRight}>&#8594;</span>
 				</button>
 				// </Link>
 			)}
