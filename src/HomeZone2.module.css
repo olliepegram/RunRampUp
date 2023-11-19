@@ -2,42 +2,75 @@
 	max-width: 1350px;
 	padding: 0 3%;
 	margin: 0 auto;
+	display: flex;
+	justify-content: space-around;
+}
+
+.containerZone2 img {
+	height: 600px;
+	width: 500px;
+	margin-top: 100px;
+	filter: grayscale(1);
 }
 
 .containerZone2 h3 {
-	text-align: center;
+	text-align: left;
 	padding: 0;
-	margin: 80px 0 0 0;
+	margin: 100px 0 0 0;
 	font-size: 36px;
+	width: 550px;
 }
 
 .containerZone2 h4 {
-	margin-top: 50px;
+	/* margin-top: 50px; */
+	margin-left: 30px;
 }
 
 .containerZone2 p {
-	text-align: center;
+	text-align: left;
 	font-size: 18px;
 	padding: 0 40px;
 }
 
 .benefits {
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
+	flex-direction: column;
 	margin-top: 60px;
 }
 
 .benefits .contentWrapper {
-	width: 300px;
-	min-height: 290px;
-	background-color: #f2f5f9;
-	margin: 10px 10px;
+	width: 600px;
+	min-height: auto;
+	background-color: #f1f1f1;
+	margin: 10px 0px;
 	border-radius: 6px;
 	text-align: center;
-	padding-bottom: 40px;
+	padding: 10px 0;
+	cursor: pointer;
 }
 
 .upperContent {
+	display: flex;
+	justify-content: space-between;
+}
+
+.upperContent span {
+	margin-right: 30px;
+	margin-top: 20px;
+}
+
+.contentWrapper p {
+	margin-top: 0;
+	margin-bottom: 10px;
+	transition: max-height 0.5s ease;
+	max-height: 0;
+	overflow: hidden;
+}
+
+.contentWrapper.open p {
+	max-height: 500px;
+	margin-bottom: 20px;
 }
 
 @media only screen and (max-width: 1170px) {
@@ -49,10 +82,6 @@
 		flex-wrap: wrap;
 	}
 	.benefits div {
-		margin-top: 20px;
-	}
-	.subHeading {
-		margin-top: 20px;
 	}
 }
 
