@@ -53,11 +53,12 @@ function HomeZone2() {
 	return (
 		<div className={styles.containerZone2}>
 			<div>
-				<h3>80% of our programs are low-intensity zone 2 training</h3>
-				{/* <p className={styles.subHeading}>
-					80% of our programs are low-intensity zone 2 training. Take a look at
-					the benefits below
-				</p> */}
+				{/* <h3>80% of our programs are low-intensity zone 2 training</h3> */}
+				<h3>The disipline to take it easy</h3>
+				<p className={styles.subHeading}>
+					80% of our programs are low-intensity zone 2 training. See the
+					benefits below
+				</p>
 
 				<div className={styles.benefits}>{renderSections()}</div>
 			</div>

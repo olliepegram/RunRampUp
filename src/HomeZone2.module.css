@@ -3,14 +3,16 @@
 	padding: 0 3%;
 	margin: 0 auto;
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 }
 
 .containerZone2 img {
-	height: 600px;
+	height: 550px;
 	width: 500px;
 	margin-top: 100px;
 	filter: grayscale(1);
+	border-radius: 6px;
+	margin-top: 125px;
 }
 
 .containerZone2 h3 {
@@ -26,10 +28,12 @@
 	margin-left: 30px;
 }
 
-.containerZone2 p {
+.containerZone2 .subHeading {
 	text-align: left;
 	font-size: 18px;
-	padding: 0 40px;
+	padding: 0;
+	max-width: 550px;
+	margin-top: 20px;
 }
 
 .benefits {
@@ -37,15 +41,16 @@
 	justify-content: flex-start;
 	flex-direction: column;
 	margin-top: 60px;
+	margin-right: 40px;
 }
 
 .benefits .contentWrapper {
-	width: 600px;
+	width: 100%;
 	min-height: auto;
 	background-color: #f1f1f1;
 	margin: 10px 0px;
 	border-radius: 6px;
-	text-align: center;
+	text-align: left;
 	padding: 10px 0;
 	cursor: pointer;
 }
@@ -62,10 +67,13 @@
 
 .contentWrapper p {
 	margin-top: 0;
+	margin-left: 30px;
+	margin-right: 30px;
 	margin-bottom: 10px;
 	transition: max-height 0.5s ease;
 	max-height: 0;
 	overflow: hidden;
+	max-width: 600px;
 }
 
 .contentWrapper.open p {
@@ -74,12 +82,15 @@
 }
 
 @media only screen and (max-width: 1190px) {
-	.benefits .contentWrapper {
-		width: 400px;
-	}
 	.containerZone2 h3 {
 		font-size: 30px;
 		width: 450px;
+	}
+	.containerZone2 .subHeading {
+		max-width: 450px;
+	}
+	.benefits {
+		margin-right: 40px;
 	}
 }
 
@@ -99,9 +110,17 @@
 		width: 100%;
 		margin-top: 40px;
 	}
+	.containerZone2 .subHeading {
+		max-width: 100%;
+	}
 
-	.benefits .contentWrapper {
-		width: 100%;
+	.benefits {
+		margin-right: 0;
+	}
+
+	.contentWrapper p {
+		max-width: 100%;
+		text-align: left;
 	}
 }
 
@@ -117,7 +136,12 @@
 	.containerZone2 h3 {
 		/* margin: 40px 5%; */
 		width: 95%;
-		margin: 40px auto;
+		margin: 40px auto 20px auto;
+	}
+
+	.containerZone2 .subHeading {
+		margin: 10px auto;
+		max-width: 95%;
 	}
 
 	.benefits {
@@ -126,10 +150,6 @@
 }
 
 @media screen and (max-width: 510px) {
-	.subHeading {
-		margin-top: 20px;
-		font-size: 18px !important;
-	}
 	.containerZone2 h3 {
 		font-size: 30px;
 	}
