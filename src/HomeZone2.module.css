@@ -131,17 +131,18 @@
 	}
 	.containerZone2 img {
 		margin-top: 0;
+		border-radius: 0;
 	}
 
 	.containerZone2 h3 {
 		/* margin: 40px 5%; */
-		width: 95%;
+		width: 90%;
 		margin: 40px auto 20px auto;
 	}
 
 	.containerZone2 .subHeading {
 		margin: 10px auto;
-		max-width: 95%;
+		max-width: 90%;
 	}
 
 	.benefits {
