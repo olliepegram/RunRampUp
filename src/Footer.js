@@ -5,23 +5,23 @@ function Footer() {
 	return (
 		<div className={styles.footerContainer}>
 			<div className={styles.footer}>
-				<div>
+				<div className={styles.footerTitle}>
 					{/* <img
 						src={arrow}
 						className={styles.arrow}
 						alt={'pic of stairs/logo'}
 					/> */}
-
 					<h3>RunRampUp</h3>
+					<span className={styles.copy}>&copy; RunRampUp 2024</span>
 				</div>
-				<div>
+				{/* <div>
 					{' '}
 					<img
 						src={arrow}
 						className={styles.arrow}
 						alt={'pic of stairs/logo'}
 					/>
-				</div>
+				</div> */}
 				<div className={styles.footerText}>
 					<p>About</p>
 					<p>
