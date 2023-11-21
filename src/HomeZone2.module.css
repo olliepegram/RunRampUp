@@ -98,6 +98,7 @@
 	.containerZone2 {
 		flex-direction: column-reverse;
 	}
+
 	.containerZone2 img {
 		width: 100%;
 		margin-top: 40px;
@@ -110,12 +111,17 @@
 		width: 100%;
 		margin-top: 40px;
 	}
+
 	.containerZone2 .subHeading {
 		max-width: 100%;
 	}
 
 	.benefits {
 		margin-right: 0;
+	}
+
+	.benefits .contentWrapper {
+		width: 100%;
 	}
 
 	.contentWrapper p {
