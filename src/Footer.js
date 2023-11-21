@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styles from './Footer.module.css';
 import arrow from './arrow.png';
 
@@ -23,7 +24,14 @@ function Footer() {
 					/>
 				</div> */}
 				<div className={styles.footerText}>
-					<p>About</p>
+					<p>
+						<Link
+							className={styles.link}
+							to='/about'
+						>
+							How it Works
+						</Link>
+					</p>
 					<p>
 						<a href='mailto:olliepegram@gmail.com'>Contact Us</a>
 					</p>

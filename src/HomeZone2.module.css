@@ -8,7 +8,7 @@
 
 .containerZone2 img {
 	height: 550px;
-	width: 500px;
+	width: 100%;
 	margin-top: 100px;
 	filter: grayscale(1);
 	border-radius: 6px;
@@ -42,10 +42,11 @@
 	flex-direction: column;
 	margin-top: 60px;
 	margin-right: 40px;
+	width: 100%;
 }
 
 .benefits .contentWrapper {
-	width: 100%;
+	width: 600px;
 	min-height: auto;
 	background-color: #f0f0f0;
 	margin: 10px 0px;
@@ -73,7 +74,6 @@
 	transition: max-height 0.5s ease;
 	max-height: 0;
 	overflow: hidden;
-	max-width: 600px;
 }
 
 .contentWrapper.open p {
@@ -94,7 +94,7 @@
 	}
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1050px) {
 	.containerZone2 {
 		flex-direction: column-reverse;
 	}

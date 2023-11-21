@@ -52,7 +52,7 @@ function HomeZone2() {
 
 	return (
 		<div className={styles.containerZone2}>
-			<div>
+			<div className={styles.leftContent}>
 				{/* <h3>80% of our programs are low-intensity zone 2 training</h3> */}
 				<h3>The disipline to take it easy</h3>
 				<p className={styles.subHeading}>

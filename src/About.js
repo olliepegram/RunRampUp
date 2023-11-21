@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import styles from './About.module.css';
+import Footer from './Footer';
 import Header from './Header';
 
 function About() {
@@ -6,85 +8,111 @@ function About() {
 		<>
 			<Header />
 			<div className={styles.aboutContainer}>
-				<p className={styles.quote}>
-					This app prioritises heart rate training and the adaptations that come
-					with each zone. All you need to get started is a{' '}
-					<span className={styles.bgText}>heart rate monitor</span>, a trusty{' '}
-					<span className={styles.bgText}>pair of shoes</span> and the{' '}
-					<span className={styles.bgText}>disipline to take it easy</span>
-				</p>
-				<p>
-					This is a tool developed by a runner for runners. The aim of this app
-					is to provide you a unique training program that stops you making the
-					same mistakes so many recreational athletes make. A lot of
-					recreational athletes skip straight to higher intensities, while there
-					is a time and place for high-intensity training, most of your training
-					load (65-80%) should be easier. We have this idea that if our run
-					doesn’t feel painful or you’re not red in the face struggling to
-					breath then it’s not doing anything. This is where Zone 2 Heart Rate
-					Training comes in.
-				</p>
-				<p>
-					Zone 2 training is a valuable and often underestimated component of a
-					runner's training regimen. Developed by a passionate runner for fellow
-					enthusiasts, this app is designed to be your companion in avoiding
-					common mistakes that recreational athletes tend to make. So, what
-					exactly is Zone 2 training and why is it such a crucial part of your
-					running journey?
-				</p>
-				<h2>Understanding Zone 2 Training:</h2>
-				<p>
-					Zone 2 training revolves around training within a specific heart rate
-					range, typically between 60-70% of your maximum heart rate. Many
-					runners mistakenly jump into higher-intensity workouts, believing that
-					the more they push, the better the results. While high-intensity
-					training does have its place, it should not be the sole focus of your
-					training plan. In fact, a significant portion of your training (about
-					65-70%) should consist of easier, low-intensity workouts.
-				</p>
-				<h2>The Benefits of Zone 2 Training:</h2>
-				<ul>
-					<li>
-						<strong>Enhanced Mitochondrial Density:</strong> Sustained Zone 2
-						training leads to heightened mitochondrial density in Type I
-						(slow-twitch) muscle fibers. Mitochondria, often termed the cellular
-						powerhouses, are responsible for converting oxygen into ATP, the
-						body's primary energy source. The greater the number of mitochondria
-						in muscle cells, the more advantageous it is for endurance athletes.
-					</li>
-					<li>
-						<strong>Increased Capillary Density:</strong> It promotes the growth
-						of capillaries, the blood vessels that supply oxygen to muscles and
-						remove waste products, resulting in better oxygen delivery, reduced
-						fatigue, and more efficient energy transfer.
-					</li>
-					<li>
-						<strong>Injury Prevention:</strong> High-intensity workouts can put
-						substantial stress on your muscles and joints. Zone 2 training
-						allows for a lower-impact form of exercise, reducing the risk of
-						overuse injuries that often plague those who exclusively pursue
-						higher-intensity workouts.
-					</li>
-					<li>
-						<strong>Improved Oxidative Enzyme Activity:</strong> Zone 2 training
-						enhances the efficiency of oxygen utilization, leading to a higher
-						energy turnover.
-					</li>
-					<li>
-						<strong>Cardiac Enhancements:</strong> Training in Zone 2 fosters
-						critical cardiac adaptations, such as increased stroke volume, which
-						contributes to improved VO2max, typically associated with
-						high-intensity training.
-					</li>
-					<li>
-						<strong>Enhanced Fat Utilization:</strong> This training stimulates
-						Type I muscle fiber development, allowing you to burn a higher
-						percentage of fat for fuel at higher power outputs, which is crucial
-						for endurance athletes due to the abundance of fat as an energy
-						source.
-					</li>
-				</ul>
+				<div className={styles.textContainer}>
+					<p className={styles.quote}>
+						This app prioritises heart rate training and the adaptations that
+						come with each zone. All you need to get started is a{' '}
+						<span className={styles.bgText}>heart rate monitor</span>, a trusty{' '}
+						<span className={styles.bgText}>pair of shoes</span> and the{' '}
+						<span className={styles.bgText}>disipline to take it easy</span>
+					</p>
+					<h2>
+						Have you been running for ages and feel like you’ve never really
+						improved?
+					</h2>
+					<p>
+						When I got into running I was huffing and puffing the whole run and
+						my face was guaranteed to be bright red after it. It always felt so
+						hard, but I stuck to it because I enjoyed the intensity and I
+						thought that one day with all this hard work I would get fitter and
+						my pace would improve. I got little better as my body adjusted to
+						running and my form slowly improved as a byproduct of consistent
+						running, but after all that my pace barely increased and my heart
+						rate seemed to never improve.
+					</p>
+
+					<h2>What was I missing?</h2>
+					<p>
+						I was training hard and I was consistent. When I first started
+						weightlifting, I trained hard and I saw the improvements soon after,
+						why should running be any different?{' '}
+						<strong>What I was missing was heart rate zone training.</strong>
+					</p>
+
+					<h2>What is heart rate zone training?</h2>
+					<p>
+						Heart rate training is using your heart rate to gauge your exercise
+						intensity. To do this we use heart rate zones, which are a
+						percentage of your maximum heart rate. The goal of utilizing a
+						particular zone is to become a more efficient runner. Each zone has
+						a different intensity and has its own adaptations on the body. Being
+						intentional with your training and sticking to a certain heart rate
+						zone/zones and not overexerting yourself is crucial for improving in
+						the long term, this is particularly important for your easy/zone2
+						runs.
+					</p>
+
+					<h2>80/20 Principle</h2>
+					<p>
+						Research tells us that running around 80% of our weekly runs at an
+						easy, low-intensity pace is the most efficient way to improve. The
+						other 20% is for high-intensity workouts like threshold and speed
+						runs.
+					</p>
+
+					<p>
+						Your favorite elite athletes (like Kipchoge) may be running fast on
+						race day, but how they got to that point is by spending the bulk of
+						their runs in zone 2. Their zone 2 pace may be still quite fast, but
+						over time they have stuck to that zone 2 heart rate range and slowly
+						improved.
+					</p>
+
+					<h2>How do I incorporate this into my training?</h2>
+					<ol>
+						<li>
+							Buy a chest strap heart rate monitor and a fitness watch that can
+							connect to it: Although a fitness watch will track heart rate, it
+							is highly inaccurate when running and moving, and for this type of
+							training, we want to be as accurate as possible. A chest strap is
+							closer to the heart, has way less movement and can detect spikes
+							in heart rates.
+						</li>
+						<li>
+							Figure out your heart rate zones using our calculator{' '}
+							<Link
+								className={styles.link}
+								to='/'
+							>
+								here
+							</Link>
+							.
+						</li>
+						<li>
+							If you’re just getting into running, ditch the high-intensity
+							workouts for a few months and strictly follow zone 2 workouts to
+							build your base without injuring yourself as you adjust.
+						</li>
+						<li>
+							Most importantly for your zone 2/easy runs: These runs are the
+							bulk of your program for a reason, stick to your zone 2 heart rate
+							for the <strong>WHOLE</strong> run. If you’re just starting with
+							these easy runs, it will feel like a crawl and may even be boring.
+							For now, forget about what people on strava think because over
+							many months your pace in zone 2 will slowly increase and you will
+							become a more efficient runner
+						</li>
+						<li>
+							Note: Heart rate training allows you to regulate external
+							variables such as heat and humidity and adapt more effectively on
+							days when you might not be completely recovered. In such
+							situations, your typical workout may elevate your heart rate
+							beyond the usual levels.
+						</li>
+					</ol>
+				</div>
 			</div>
+			<Footer />
 		</>
 	);
 }
