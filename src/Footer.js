@@ -35,7 +35,15 @@ function Footer() {
 					<p>
 						<a href='mailto:olliepegram@gmail.com'>Contact Us</a>
 					</p>
-					<p>Hire Me?</p>
+					<p>
+						<a
+							target='_blank'
+							rel='noreferrer'
+							href='https://github.com/olliepegram'
+						>
+							Hire Me?
+						</a>
+					</p>
 				</div>
 			</div>
 		</div>

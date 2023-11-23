@@ -21,6 +21,7 @@ const questions = [
 	'What is your resting heart rate?',
 	'What days of the week would you like to run?',
 	'Which day of the week will be your long run?',
+	'Which day of the week will be your speed day?',
 	'',
 ];
 
@@ -33,6 +34,7 @@ function ProgramForm({ onModalOpen }) {
 	const [daysPerWeek, setDaysPerWeek] = useState('');
 	const [days, setDays] = useState(daysArr);
 	const [longRunDay, setLongRunDay] = useState('');
+	const [speedDay, setSpeedDay] = useState('');
 	const [conversion, setConversion] = useState('km');
 
 	const [questionFilledStatus, setQuestionFilledStatus] = useState(
@@ -46,11 +48,17 @@ function ProgramForm({ onModalOpen }) {
 
 	const handleNext = useCallback(() => {
 		if (currentQuestionIndex < questions.length - 1 && currentQuestionFilled) {
-			setCurrentQuestionIndex(
-				(currentQuestionIndex) => currentQuestionIndex + 1
-			);
+			// Check if the current question is about selecting the long run and speed days
+			if (currentQuestionIndex === 6 && Math.abs(longRunDay - speedDay) <= 1) {
+				// Display an alert or handle the situation where the speed day is within 2 days of the long run day
+				alert('Speed day must be at least 2 days after the long run day');
+			} else {
+				setCurrentQuestionIndex(
+					(currentQuestionIndex) => currentQuestionIndex + 1
+				);
+			}
 		}
-	}, [currentQuestionFilled, currentQuestionIndex]);
+	}, [currentQuestionFilled, currentQuestionIndex, longRunDay, speedDay]);
 
 	useEffect(() => {
 		if (age) {
@@ -125,6 +133,8 @@ function ProgramForm({ onModalOpen }) {
 			setMinHeartRate(parseInt(inputValue, 10));
 		} else if (currentQuestionIndex === 5) {
 			setLongRunDay(Number(inputValue));
+		} else if (currentQuestionIndex === 6) {
+			setSpeedDay(Number(inputValue));
 		}
 	};
 
@@ -151,6 +161,7 @@ function ProgramForm({ onModalOpen }) {
 			days,
 			daysPerWeek,
 			longRunDay,
+			speedDay,
 			conversion,
 		};
 
@@ -182,6 +193,26 @@ function ProgramForm({ onModalOpen }) {
 						required
 						className={styles.dropdown}
 						value={longRunDay}
+						onChange={handleInputChange}
+					>
+						{daysArr.map(({ day }, i) => (
+							<option
+								key={day}
+								value={i + 1}
+							>
+								{day}
+							</option>
+						))}
+					</select>
+				</div>
+			);
+		} else if (currentQuestionIndex === 6) {
+			return (
+				<div className={styles.dropdownContainer}>
+					<select
+						required
+						className={styles.dropdown}
+						value={speedDay}
 						onChange={handleInputChange}
 					>
 						{daysArr.map(({ day }, i) => (

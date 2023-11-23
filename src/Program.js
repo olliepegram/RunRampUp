@@ -4,7 +4,9 @@ import { calculateHeartRateZones } from './utils/calculateHeartRateZones';
 import { generateRunningProgram } from './utils/generateRunningProgram';
 import { useLocation } from 'react-router-dom';
 import Header from './Header';
-import ProgramIntro from './ProgramIntro';
+import Footer from './Footer';
+import arrow from './arrow.png';
+import bg from './run.jpeg';
 
 function Program() {
 	const location = useLocation();
@@ -18,11 +20,13 @@ function Program() {
 		maxHeartRate,
 		days,
 		longRunDay,
+		speedDay,
 		conversion,
 	} = user || {};
 	const currentWeeklyDistance = currentLoad;
 	const desiredWeeklyDistance = goalLoad;
 	const longRunPickedDay = longRunDay;
+	const speedDayPicked = speedDay;
 
 	const heartRateZones = calculateHeartRateZones(minHeartRate, maxHeartRate);
 
@@ -38,10 +42,12 @@ function Program() {
 		desiredWeeklyDistance,
 		days,
 		longRunPickedDay,
+		speedDayPicked,
 		catagories
 	);
 	const [runData, setRunData] = useState(program);
 	const [groupedRunData, setGroupedRunData] = useState({});
+	const [lastWeekData, setLastWeekData] = useState(null);
 
 	useEffect(() => {
 		const groupedData = runData.reduce((acc, item) => {
@@ -59,6 +65,22 @@ function Program() {
 		setGroupedRunData(groupedData);
 	}, [runData]);
 
+	const introText = (user) => {
+		let lastWeek = null;
+		let longestRun = null;
+		if (user && Object.keys(user).length > 0) {
+			const lastObj = user[Object.keys(user)[Object.keys(user).length - 1]];
+
+			if (Array.isArray(lastObj)) {
+				lastWeek = lastObj.find((item) => item.week);
+				longestRun = lastObj.sort((a, b) => b.distance - a.distance)[0]
+					.distance;
+				// speedDay = lastObj.find((item) => item.typeName === 'speed').day - 1;
+			}
+		}
+		return [lastWeek.week, longestRun];
+	};
+	introText(groupedRunData);
 	const renderWeeks = (groupedRunData) => {
 		const weekDays = [
 			'Monday',
@@ -73,7 +95,6 @@ function Program() {
 		const allDays = Object.values(groupedRunData)
 			.flatMap((weekData) => weekData.map((day) => day.day))
 			.filter((value, index, self) => self.indexOf(value) === index);
-		console.log(allDays);
 		return (
 			<table className={styles.tableWrapper}>
 				<thead>
@@ -140,17 +161,39 @@ function Program() {
 	return (
 		<>
 			<Header />
+			<div className={styles.upperSection}>
+				<div className={styles.upperInnerSection}>
+					<div className={styles.leftIntro}>
+						<img
+							src={arrow}
+							className={styles.arrow}
+							alt={'steps and an arrow'}
+						/>
+						<h4 className={styles.overlayText}>
+							{introText(groupedRunData)[0]} Week Running Plan
+						</h4>
+					</div>
+					<div>
+						<button className={styles.programButton}>Download CSV</button>
+					</div>
+				</div>
+			</div>
+			<div className={styles.mainSection}>
+				<img
+					src={bg}
+					alt={'snowy mountain'}
+					className={styles.bg}
+				/>
+				<div className={styles.mainSectionContent}>
+					<h2>About Running Program</h2>
+				</div>
+			</div>
 			<div className={styles.wrapper}>
-				{/* <ProgramIntro
-					user={groupedRunData}
-					heartRateZones={heartRateZones}
-					longRunDay={longRunDay}
-					conversion={conversion}
-				/> */}
 				<div className={styles.programContainer}>
 					{renderWeeks(groupedRunData)}
 				</div>
 			</div>
+			<Footer />
 		</>
 	);
 }

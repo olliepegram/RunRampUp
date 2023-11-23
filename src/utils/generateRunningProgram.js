@@ -3,6 +3,7 @@ export const generateRunningProgram = (
 	desiredRunningDistance,
 	runningDays,
 	longRunPickedDay = 7,
+	speedDayPicked,
 	catagory
 ) => {
 	const activeDayId = runningDays.map((day) => {
@@ -20,23 +21,21 @@ export const generateRunningProgram = (
 	let currentWeek = 1;
 	const schedule = [];
 
-	const findClosestActiveDay = activeDayId.findIndex((day, i) => {
-		let closestIndex = -1; // Initialize to -1, indicating no active day found.
+	// const findClosestActiveDay = activeDayId.findIndex((day, i) => {
+	// 	let closestIndex = -1;
 
-		// Define a range for days to skip (e.g., 3 days before and after the long run day)
-		const daysToSkip = 2;
+	// 	const daysToSkip = 2;
 
-		// Check if the day is active and not within the range of days to skip
-		if (day > 0 && Math.abs(i - longRunPickedDay) > daysToSkip) {
-			closestIndex = i; // Set the closest index
-		}
-		console.log(closestIndex);
-		return closestIndex !== -1; // Return true if an active day was found, indicating it should stop searching.
-	});
+	// 	// Check if the day is active and not within the range of days to skip
+	// 	if (day > 0 && Math.abs(i - longRunPickedDay) > daysToSkip) {
+	// 		closestIndex = i; // Set the closest index
+	// 	}
+	// 	console.log(closestIndex);
+	// 	return closestIndex !== -1;
+	// });
 
-	console.log(findClosestActiveDay);
 	while (currentWeeklyDistance < desiredRunningDistance) {
-		const weeklyDistanceIncreasePercentage = 0.1;
+		let weeklyDistanceIncreasePercentage = 0.1;
 		const weeklySpeed = 0.2 * currentWeeklyDistance;
 		const longRunDay = 0.4 * currentWeeklyDistance;
 		const rest = 0;
@@ -56,7 +55,7 @@ export const generateRunningProgram = (
 						typeName: 'long',
 						currentWeeklyDistance: Math.round(currentWeeklyDistance),
 					});
-				} else if (i === activeDayId[findClosestActiveDay]) {
+				} else if (activeDayId[i] === speedDayPicked) {
 					schedule.push({
 						week: currentWeek,
 						day: i + 1,
@@ -87,6 +86,11 @@ export const generateRunningProgram = (
 			}
 		}
 
+		if (currentWeeklyDistance > 50 && currentWeeklyDistance < 70) {
+			weeklyDistanceIncreasePercentage = 0.05;
+		} else if (currentWeeklyDistance > 70) {
+			weeklyDistanceIncreasePercentage = 0.03;
+		}
 		currentWeeklyDistance +=
 			weeklyDistanceIncreasePercentage * currentWeeklyDistance;
 		currentWeek++;

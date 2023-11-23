@@ -135,13 +135,13 @@
 		width: 100%;
 		padding: 0 0;
 	}
+
 	.containerZone2 img {
 		margin-top: 0;
 		border-radius: 0;
 	}
 
 	.containerZone2 h3 {
-		/* margin: 40px 5%; */
 		width: 90%;
 		margin: 40px auto 20px auto;
 	}
@@ -152,7 +152,8 @@
 	}
 
 	.benefits {
-		padding: 0 3%;
+		width: 100%;
+		padding: 0 0%;
 	}
 }
 
@@ -161,6 +162,6 @@
 		font-size: 30px;
 	}
 	.benefits div {
-		margin-top: 15px;
+		/* margin-top: 15px; */
 	}
 }
