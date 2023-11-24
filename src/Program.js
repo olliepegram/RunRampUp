@@ -47,7 +47,7 @@ function Program() {
 	);
 	const [runData, setRunData] = useState(program);
 	const [groupedRunData, setGroupedRunData] = useState({});
-	const [lastWeekData, setLastWeekData] = useState(null);
+	const [lastWeekData, setLastWeekData] = useState(1);
 
 	useEffect(() => {
 		const groupedData = runData.reduce((acc, item) => {
@@ -65,11 +65,14 @@ function Program() {
 		setGroupedRunData(groupedData);
 	}, [runData]);
 
-	const introText = (user) => {
-		let lastWeek = null;
+	useEffect(() => {
+		let lastWeek = 1;
 		let longestRun = null;
-		if (user && Object.keys(user).length > 0) {
-			const lastObj = user[Object.keys(user)[Object.keys(user).length - 1]];
+		if (groupedRunData && Object.keys(groupedRunData).length > 0) {
+			const lastObj =
+				groupedRunData[
+					Object.keys(groupedRunData)[Object.keys(groupedRunData).length - 1]
+				];
 
 			if (Array.isArray(lastObj)) {
 				lastWeek = lastObj.find((item) => item.week);
@@ -78,9 +81,10 @@ function Program() {
 				// speedDay = lastObj.find((item) => item.typeName === 'speed').day - 1;
 			}
 		}
-		return [lastWeek.week, longestRun];
-	};
-	introText(groupedRunData);
+		setLastWeekData(lastWeek.week);
+		console.log(lastWeek.week);
+	}, [groupedRunData]);
+
 	const renderWeeks = (groupedRunData) => {
 		const weekDays = [
 			'Monday',
@@ -170,7 +174,7 @@ function Program() {
 							alt={'steps and an arrow'}
 						/>
 						<h4 className={styles.overlayText}>
-							{introText(groupedRunData)[0]} Week Running Plan
+							{lastWeekData} Week Running Plan
 						</h4>
 					</div>
 					<div>
