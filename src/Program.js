@@ -7,6 +7,8 @@ import Header from './Header';
 import Footer from './Footer';
 import arrow from './arrow.png';
 import bg from './run.jpeg';
+import ProgramIntroZones from './ProgramIntroZones';
+import ProgramIntro from './ProgramIntro';
 
 function Program() {
 	const location = useLocation();
@@ -168,11 +170,6 @@ function Program() {
 			<div className={styles.upperSection}>
 				<div className={styles.upperInnerSection}>
 					<div className={styles.leftIntro}>
-						<img
-							src={arrow}
-							className={styles.arrow}
-							alt={'steps and an arrow'}
-						/>
 						<h4 className={styles.overlayText}>
 							{lastWeekData} Week Running Plan
 						</h4>
@@ -182,16 +179,7 @@ function Program() {
 					</div>
 				</div>
 			</div>
-			<div className={styles.mainSection}>
-				<img
-					src={bg}
-					alt={'snowy mountain'}
-					className={styles.bg}
-				/>
-				<div className={styles.mainSectionContent}>
-					<h2>About Running Program</h2>
-				</div>
-			</div>
+			<ProgramIntro heartRateZones={heartRateZones} />
 			<div className={styles.wrapper}>
 				<div className={styles.programContainer}>
 					{renderWeeks(groupedRunData)}

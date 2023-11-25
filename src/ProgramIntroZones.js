@@ -1,4 +1,4 @@
-import styles from './ProgramIntro.module.css';
+import styles from './ProgramIntroZones.module.css';
 
 function ProgramIntro({ heartRateZones, width, flex }) {
 	const zoneName = (zone) => {
