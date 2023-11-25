@@ -116,3 +116,16 @@
 .weeklyDistance {
 	padding: 10px;
 }
+
+@media screen and (max-width: 720px) {
+	.upperInnerSection {
+		justify-content: center;
+		flex-direction: column;
+		text-align: center;
+	}
+
+	.leftIntro {
+		justify-content: center;
+		margin-bottom: 20px;
+	}
+}

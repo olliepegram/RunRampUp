@@ -153,6 +153,11 @@
 		flex-direction: column;
 	}
 
+	.header {
+		margin-top: 220px;
+		margin-left: 200px;
+	}
+
 	.leftSide {
 		width: 100%;
 		border-bottom: 0.5px solid #1f24393d;

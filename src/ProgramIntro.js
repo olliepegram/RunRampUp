@@ -18,7 +18,7 @@ function ProgramIntro({ heartRateZones }) {
 						</div>
 
 						<div className={styles.textWrapper}>
-							<p>There are 3 categories of running days:</p>
+							<p>You've been prescribed 3 different types of runs:</p>
 
 							<ul>
 								<li>

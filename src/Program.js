@@ -5,9 +5,6 @@ import { generateRunningProgram } from './utils/generateRunningProgram';
 import { useLocation } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
-import arrow from './arrow.png';
-import bg from './run.jpeg';
-import ProgramIntroZones from './ProgramIntroZones';
 import ProgramIntro from './ProgramIntro';
 
 function Program() {
